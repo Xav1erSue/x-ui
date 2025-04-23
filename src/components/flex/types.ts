@@ -1,4 +1,4 @@
-import { BaseComponentProps } from 'lib/types';
+import { BaseComponentProps } from '../../types';
 import { CSSProperties } from 'react';
 
 export interface FlexProps extends BaseComponentProps {

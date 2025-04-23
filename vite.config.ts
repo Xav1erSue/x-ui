@@ -7,13 +7,13 @@ export default defineConfig({
   plugins: [react()],
   build: {
     lib: {
-      entry: 'lib/index.ts',
+      entry: 'src/index.ts',
       formats: ['es'],
     },
   },
   resolve: {
     alias: {
-      xui: path.resolve(__dirname, 'lib/index.ts'),
+      xui: path.resolve(__dirname, 'src/index.ts'),
     },
   },
 });

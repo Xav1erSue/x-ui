@@ -1,4 +1,4 @@
-import { BaseComponentProps } from 'lib/types';
+import { BaseComponentProps } from '../../types';
 
 export interface ButtonProps extends BaseComponentProps {
   /**

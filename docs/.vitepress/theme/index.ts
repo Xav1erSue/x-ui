@@ -1,4 +1,4 @@
 import DefaultTheme from 'vitepress/theme';
-import '../../../lib/index.less';
+import '../../../src/index.less';
 
 export default DefaultTheme;

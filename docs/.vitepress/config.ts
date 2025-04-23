@@ -37,14 +37,14 @@ export default defineConfig({
   markdown: {
     config: (md) => {
       md.use(vitepressDemoPlugin, {
-        demoDir: path.resolve(__dirname, '../../lib/components'),
+        demoDir: path.resolve(__dirname, '../../src/components'),
       });
     },
   },
   vite: {
     resolve: {
       alias: {
-        xui: path.resolve(__dirname, '../../lib/index.ts'),
+        xui: path.resolve(__dirname, '../../src/index.ts'),
       },
     },
   },
