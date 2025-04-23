@@ -1,0 +1,89 @@
+.@{prefix}-button {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  transition: all 0.3s ease-in-out;
+
+  &--status-default {
+    --button-color-primary: var(--color-primary);
+  }
+
+  &--status-success {
+    --button-color-primary: var(--color-status-success);
+  }
+
+  &--status-error {
+    --button-color-primary: var(--color-status-error);
+  }
+
+  &__label {
+    font-weight: 400;
+    font-style: normal;
+    line-height: normal;
+  }
+
+  &--disabled {
+    opacity: 0.6;
+  }
+
+  &--block {
+    display: flex;
+  }
+
+  &:hover:not(&--disabled) {
+    box-shadow: color-mix(in srgb, var(--button-color-primary) 8%, transparent);
+    cursor: pointer;
+  }
+
+  &:hover:is(&--disabled) {
+    cursor: not-allowed;
+  }
+
+  /* ----------------------------------- 主题 ----------------------------------- */
+  &--default {
+    box-sizing: border-box;
+    color: var(--button-color-primary);
+    border: 2px solid var(--button-color-primary);
+
+    &:active {
+      color: color-mix(in srgb, var(--button-color-primary) 85%, #000);
+      background: color-mix(in srgb, var(--button-color-primary) 85%, #000);
+      border-color: color-mix(in srgb, var(--button-color-primary) 85%, #000);
+    }
+  }
+
+  // 主色按钮样式
+  &--primary {
+    color: #fff;
+    background: var(--button-color-primary);
+
+    &:active {
+      background: color-mix(in srgb, var(--button-color-primary) 85%, #000);
+      box-shadow: 0 4px 20px 0 rgb(0 0 0 / 20%) inset;
+    }
+  }
+
+  /* ----------------------------------- 尺寸 ----------------------------------- */
+  &--small {
+    height: 32px;
+    padding: 0 var(--padding-small);
+    font-size: var(--font-size-small);
+    border-radius: var(--border-radius-small);
+  }
+
+  &--medium {
+    height: 40px;
+    padding: 0 var(--padding-medium);
+    font-size: var(--font-size-medium);
+    border-radius: var(--border-radius-medium);
+  }
+
+  &--large {
+    height: 48px;
+    padding: 0 var(--padding-large);
+    font-size: var(--font-size-large);
+    border-radius: var(--border-radius-large);
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "x-ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "dependencies": {
+    "@tanstack/react-table": "^8.21.3",
+    "classnames": "^2.5.1",
+    "normalize.css": "^8.0.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.22.0",
+    "@types/node": "^22.14.1",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react-swc": "^3.8.0",
+    "eslint": "^9.22.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
+    "less": "^4.3.0",
+    "postcss-less": "^6.0.0",
+    "stylelint": "^16.18.0",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^38.0.0",
+    "stylelint-less": "^3.0.1",
+    "stylelint-order": "^7.0.0",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.26.1",
+    "vite": "^6.3.1",
+    "vitepress": "^1.6.3",
+    "vitepress-demo-plugin": "^1.4.1"
+  }
+}
