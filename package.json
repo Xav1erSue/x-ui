@@ -16,6 +16,7 @@
     "@tanstack/react-table": "^8.21.3",
     "classnames": "^2.5.1",
     "normalize.css": "^8.0.1",
+    "rc-field-form": "^2.7.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

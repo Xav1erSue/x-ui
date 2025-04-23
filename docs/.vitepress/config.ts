@@ -9,29 +9,47 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Components', link: '/components', activeMatch: '/components/' },
+      {
+        text: 'Components',
+        link: 'components',
+        activeMatch: '/components/',
+      },
     ],
     sidebar: {
       '/components/': {
         base: '/components/',
         items: [
           {
-            text: '基础组件',
+            text: '组件总览',
+            base: '/components',
+            link: '/',
+          },
+          {
+            text: '通用',
+            base: '/components',
+            collapsed: false,
+            items: [{ text: 'Button 按钮', link: '/button' }],
+          },
+          {
+            text: '布局',
+            base: '/components',
+            collapsed: false,
+            items: [{ text: 'Flex 弹性布局', link: '/flex' }],
+          },
+          {
+            text: '表单组件',
+            base: '/components',
             collapsed: false,
             items: [
-              { text: 'Button', link: 'button' },
-              { text: 'Input', link: 'input' },
-              { text: 'Select', link: 'select' },
-              { text: 'Table', link: 'table' },
-              { text: 'Dialog', link: 'dialog' },
+              { text: 'Form 表单', link: '/form' },
+              { text: 'Input 输入框', link: '/input' },
             ],
           },
         ],
       },
     },
-
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' },
+      { icon: 'github', link: 'https://github.com/Xav1erSue/x-ui' },
     ],
   },
   markdown: {

@@ -1,9 +1,7 @@
-import { BaseComponentProps } from '../../types';
-
-export interface IconProps extends BaseComponentProps {
+export interface IconProps extends React.HTMLAttributes<SVGSVGElement> {
   name: string;
   size?: number | string;
   width?: number | string;
   height?: number | string;
-  color?: string;
+  fill?: string;
 }

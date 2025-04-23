@@ -1,6 +1,8 @@
-import { BaseComponentProps } from '../../types';
+import { ButtonHTMLAttributes } from 'react';
+import { OmitWithTypes } from '../../types/utils';
 
-export interface ButtonProps extends BaseComponentProps {
+export interface ButtonProps
+  extends OmitWithTypes<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
   /**
    * 按钮类型
    * @default 'default'
@@ -11,11 +13,6 @@ export interface ButtonProps extends BaseComponentProps {
    * @default 'medium'
    */
   size?: 'small' | 'medium' | 'large';
-  /**
-   * 是否禁用
-   * @default false
-   */
-  disabled?: boolean;
   /**
    * 是否块级元素
    * @default false

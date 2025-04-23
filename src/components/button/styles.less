@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   color: var(--color-primary);
-  transition: all 0.3s ease-in-out;
+  transition: all 0.1s ease-in-out;
 
   &--status-default {
     --button-color-primary: var(--color-primary);
@@ -46,23 +46,22 @@
     box-sizing: border-box;
     color: var(--button-color-primary);
     border: 2px solid var(--button-color-primary);
+  }
 
-    &:active {
-      color: color-mix(in srgb, var(--button-color-primary) 85%, #000);
-      background: color-mix(in srgb, var(--button-color-primary) 85%, #000);
-      border-color: color-mix(in srgb, var(--button-color-primary) 85%, #000);
-    }
+  &--default:not(&--disabled):active {
+    color: color-mix(in srgb, var(--button-color-primary) 85%, #000);
+    border-color: color-mix(in srgb, var(--button-color-primary) 85%, #000);
   }
 
   // 主色按钮样式
   &--primary {
     color: #fff;
     background: var(--button-color-primary);
+  }
 
-    &:active {
-      background: color-mix(in srgb, var(--button-color-primary) 85%, #000);
-      box-shadow: 0 4px 20px 0 rgb(0 0 0 / 20%) inset;
-    }
+  &--primary:not(&--disabled):active {
+    background: color-mix(in srgb, var(--button-color-primary) 85%, #000);
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 20%) inset;
   }
 
   /* ----------------------------------- 尺寸 ----------------------------------- */

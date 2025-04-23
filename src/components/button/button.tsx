@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = (props) => {
   } = props;
 
   return (
-    <div
+    <button
       className={cn(prefix, className, {
         [`${prefix}--${type}`]: type,
         [`${prefix}--disabled`]: disabled,
@@ -30,11 +30,12 @@ const Button: React.FC<ButtonProps> = (props) => {
         [`${prefix}--status-${status}`]: status,
       })}
       onClick={(e) => !disabled && onClick?.(e)}
+      disabled={disabled}
       {...rest}
     >
       {loading ? <Loading /> : null}
       <span className={`${prefix}__label`}>{children}</span>
-    </div>
+    </button>
   );
 };
 

@@ -1,7 +1,6 @@
-import { BaseComponentProps } from '../../types';
 import { CSSProperties } from 'react';
 
-export interface FlexProps extends BaseComponentProps {
+export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * 主轴方向
    * @default 'horizontal'
@@ -27,8 +26,4 @@ export interface FlexProps extends BaseComponentProps {
    * @default false
    */
   wrap?: boolean;
-  /**
-   * 子元素
-   */
-  children?: React.ReactNode | React.ReactNode[];
 }
