@@ -3,9 +3,23 @@
   gap: 10px;
   align-items: center;
   justify-content: center;
-  color: var(--color-primary);
-  transition: all 0.1s ease-in-out;
+  width: fit-content;
+  height: fit-content;
+  border-radius: var(--border-radius-large);
+  transition: all 0.05s ease-in-out;
 
+  &__label {
+    font-weight: 400;
+    font-style: normal;
+    line-height: normal;
+  }
+
+  &--block {
+    display: flex;
+    width: 100%;
+  }
+
+  /* ----------------------------------- 状态 ----------------------------------- */
   &--status-default {
     --button-color-primary: var(--color-primary);
   }
@@ -18,71 +32,101 @@
     --button-color-primary: var(--color-status-error);
   }
 
-  &__label {
-    font-weight: 400;
-    font-style: normal;
-    line-height: normal;
-  }
+  --button-color-secondary: color-mix(
+    in srgb,
+    var(--button-color-primary) 25%,
+    white 25%
+  );
 
-  &--disabled {
-    opacity: 0.6;
-  }
-
-  &--block {
-    display: flex;
-  }
-
-  &:hover:not(&--disabled) {
-    box-shadow: color-mix(in srgb, var(--button-color-primary) 8%, transparent);
+  /* ----------------------------------- 伪类 ----------------------------------- */
+  &:hover:not(&:disabled) {
     cursor: pointer;
   }
 
-  &:hover:is(&--disabled) {
+  &:hover:is(&:disabled) {
     cursor: not-allowed;
   }
 
+  &:active:not(&:disabled) {
+    box-shadow: 0 0 0 4px var(--button-color-secondary);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+  }
+
   /* ----------------------------------- 主题 ----------------------------------- */
+
+  /* --------------------------------- default -------------------------------- */
   &--default {
     box-sizing: border-box;
     color: var(--button-color-primary);
     border: 2px solid var(--button-color-primary);
   }
 
-  &--default:not(&--disabled):active {
-    color: color-mix(in srgb, var(--button-color-primary) 85%, #000);
-    border-color: color-mix(in srgb, var(--button-color-primary) 85%, #000);
+  &--default:not(&:disabled):hover {
+    .mix-with-white(color, var(--button-color-primary));
   }
 
-  // 主色按钮样式
+  &--default:not(&:disabled):active {
+    color: var(--button-color-primary);
+  }
+
+  /* --------------------------------- primary -------------------------------- */
   &--primary {
     color: #fff;
     background: var(--button-color-primary);
   }
 
-  &--primary:not(&--disabled):active {
-    background: color-mix(in srgb, var(--button-color-primary) 85%, #000);
-    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 20%) inset;
+  &--primary:not(&:disabled):hover {
+    .mix-with-black(background, var(--button-color-primary));
+  }
+
+  &--primary:not(&:disabled):active {
+    background: var(--button-color-primary);
+  }
+
+  /* ---------------------------------- ghost --------------------------------- */
+  &--ghost {
+    color: var(--button-color-primary);
+  }
+
+  &--ghost:not(&:disabled):hover {
+    .mix-with-black(color, var(--button-color-primary));
+
+    background-color: var(--button-color-secondary);
+  }
+
+  &--ghost:not(&:disabled):active {
+    background: none;
+  }
+
+  /* ---------------------------------- link ---------------------------------- */
+  &--link {
+    color: var(--button-color-primary);
+  }
+
+  &--link:not(&:disabled):hover {
+    .mix-with-black(color, var(--button-color-primary));
+  }
+
+  &--link:not(&:disabled):active {
+    background: none;
   }
 
   /* ----------------------------------- 尺寸 ----------------------------------- */
   &--small {
-    height: 32px;
-    padding: 0 var(--padding-small);
+    padding: var(--spacing-y-small) var(--spacing-x-small);
     font-size: var(--font-size-small);
-    border-radius: var(--border-radius-small);
   }
 
   &--medium {
-    height: 40px;
-    padding: 0 var(--padding-medium);
+    padding: var(--spacing-y-medium) var(--spacing-x-medium);
     font-size: var(--font-size-medium);
-    border-radius: var(--border-radius-medium);
   }
 
   &--large {
-    height: 48px;
-    padding: 0 var(--padding-large);
+    padding: var(--spacing-y-large) var(--spacing-x-large);
     font-size: var(--font-size-large);
-    border-radius: var(--border-radius-large);
   }
 }

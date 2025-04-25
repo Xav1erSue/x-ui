@@ -8,6 +8,6 @@
 
 <demo react="button/demo/size.tsx" />
 
-# 块级元素
+## 块级元素
 
 <demo react="button/demo/block.tsx" />

@@ -25,6 +25,36 @@ const Demo: React.FC = () => {
           Error Button
         </Button>
       </Flex>
+      <Flex align="center" gap="medium" wrap>
+        <Button type="ghost">Ghost Button</Button>
+        <Button type="ghost" loading>
+          Ghost Button
+        </Button>
+        <Button type="ghost" disabled>
+          Ghost Button
+        </Button>
+        <Button type="ghost" status="success">
+          Success Button
+        </Button>
+        <Button type="ghost" status="error">
+          Error Button
+        </Button>
+      </Flex>
+      <Flex align="center" gap="medium" wrap>
+        <Button type="link">Link Button</Button>
+        <Button type="link" loading>
+          Link Button
+        </Button>
+        <Button type="link" disabled>
+          Link Button
+        </Button>
+        <Button type="link" status="success">
+          Success Button
+        </Button>
+        <Button type="link" status="error">
+          Error Button
+        </Button>
+      </Flex>
     </Flex>
   );
 };

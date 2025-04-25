@@ -14,7 +14,9 @@
   },
   "dependencies": {
     "@tanstack/react-table": "^8.21.3",
+    "ahooks": "^3.8.4",
     "classnames": "^2.5.1",
+    "lucide-react": "^0.503.0",
     "normalize.css": "^8.0.1",
     "rc-field-form": "^2.7.0",
     "react": "^19.0.0",

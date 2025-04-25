@@ -1,0 +1,15 @@
+.mix-with-black(@property, @color, @percent: 85%, @alpha: 1) {
+  @{property}: color-mix(
+    in srgb,
+    rgb(from @color r g b / @alpha) @percent,
+    black
+  );
+}
+
+.mix-with-white(@property, @color, @percent: 85%, @alpha: 1) {
+  @{property}: color-mix(
+    in srgb,
+    rgb(from @color r g b / @alpha) @percent,
+    white
+  );
+}

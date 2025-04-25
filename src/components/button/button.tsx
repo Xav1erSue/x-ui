@@ -23,7 +23,6 @@ const Button: React.FC<ButtonProps> = (props) => {
     <button
       className={cn(prefix, className, {
         [`${prefix}--${type}`]: type,
-        [`${prefix}--disabled`]: disabled,
         [`${prefix}--loading`]: loading,
         [`${prefix}--${size}`]: size,
         [`${prefix}--block`]: block,

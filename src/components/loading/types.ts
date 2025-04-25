@@ -1,3 +1,7 @@
-import { IconProps } from '../icon';
-
-export type LoadingProps = Omit<IconProps, 'name'>;
+export interface LoadingProps {
+  /**
+   * 尺寸
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium' | 'large';
+}

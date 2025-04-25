@@ -9,15 +9,27 @@
     flex-direction: column;
   }
 
-  &--gap-small {
-    gap: var(--padding-small);
+  &--horizontal.@{prefix}-flex--gap-small {
+    gap: var(--spacing-x-small);
   }
 
-  &--gap-medium {
-    gap: var(--padding-medium);
+  &--horizontal.@{prefix}-flex--gap-medium {
+    gap: var(--spacing-x-medium);
   }
 
-  &--gap-large {
-    gap: var(--padding-large);
+  &--horizontal.@{prefix}-flex--gap-large {
+    gap: var(--spacing-x-large);
+  }
+
+  &--vertical.@{prefix}-flex--gap-small {
+    gap: var(--spacing-y-small);
+  }
+
+  &--vertical.@{prefix}-flex--gap-medium {
+    gap: var(--spacing-y-medium);
+  }
+
+  &--vertical.@{prefix}-flex--gap-large {
+    gap: var(--spacing-y-large);
   }
 }

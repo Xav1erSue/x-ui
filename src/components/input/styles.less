@@ -1,36 +1,97 @@
 .@{prefix}-input {
-  font-weight: 400;
-  font-style: normal;
-  line-height: normal;
+  border: 1px solid var(--color-fill);
+  border-radius: var(--border-radius-large);
+  transition: all 0.05s ease-in-out;
+
+  /* ----------------------------------- 状态 ----------------------------------- */
+  &--status-default {
+    --input-color-primary: var(--color-primary);
+  }
+
+  &--status-success {
+    --input-color-primary: var(--color-status-success);
+
+    border-color: var(--color-status-success);
+  }
+
+  &--status-error {
+    --input-color-primary: var(--color-status-error);
+
+    border-color: var(--color-status-error);
+  }
+
+  --input-color-secondary: color-mix(
+    in srgb,
+    var(--input-color-primary) 25%,
+    white 25%
+  );
+
+  /* ----------------------------------- 伪类 ----------------------------------- */
+  &:hover:is(&--disabled) {
+    cursor: not-allowed;
+  }
+
+  &:focus:not(&--disabled),
+  &:focus-within:not(&--disabled) {
+    border-color: var(--input-color-primary);
+    box-shadow: 0 0 0 4px var(--input-color-secondary);
+  }
+
+  &--disabled {
+    opacity: 0.6;
+  }
+
+  /* ----------------------------------- 尺寸 ----------------------------------- */
+  &--small {
+    padding: var(--spacing-y-small) var(--spacing-x-small);
+
+    --input-font-size: var(--font-size-small);
+  }
+
+  &--medium {
+    padding: var(--spacing-y-medium) var(--spacing-x-medium);
+
+    --input-font-size: var(--font-size-medium);
+  }
+
+  &--large {
+    padding: var(--spacing-y-large) var(--spacing-x-large);
+
+    --input-font-size: var(--font-size-large);
+  }
+
+  /* ----------------------------------- 元素 ----------------------------------- */
 
   & > input {
-    &:focus {
-      color: var(--color-text-primary);
-    }
+    width: 100%;
+    color: var(--color-text-primary);
+    font-weight: 400;
+    font-size: var(--input-font-size);
+    font-style: normal;
+    line-height: normal;
+  }
 
-    &::placeholder {
-      color: var(--color-black-2);
-    }
+  & > input::placeholder {
+    color: var(--color-text-secondary);
   }
 
   &--disabled {
     cursor: not-allowed;
-    opacity: 0.7;
+    opacity: 0.6;
 
     & > input {
       cursor: not-allowed;
     }
   }
 
-  &--small {
-    font-size: var(--font-size-small);
-  }
+  &__clear {
+    width: var(--input-font-size);
+    height: var(--input-font-size);
+    color: var(--color-text-secondary);
 
-  &--medium {
-    font-size: var(--font-size-medium);
-  }
-
-  &--large {
-    font-size: var(--font-size-large);
+    &:hover {
+      color: var(--color-text-primary);
+      cursor: pointer;
+    }
   }
 }

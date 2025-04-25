@@ -1,12 +1,13 @@
 import { FlexProps } from './types';
 import cn from 'classnames';
 import { getClsPrefix } from '../../utils';
+import { forwardRef } from 'react';
 
 const prefix = getClsPrefix('flex');
 
-const Flex: React.FC<FlexProps> = (props) => {
+const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
   const {
-    direction,
+    direction = 'horizontal',
     justify,
     align,
     wrap,
@@ -19,6 +20,7 @@ const Flex: React.FC<FlexProps> = (props) => {
 
   return (
     <div
+      ref={ref}
       className={cn(prefix, className, {
         [`${prefix}--gap-${gap}`]: typeof gap === 'string',
         [`${prefix}--${direction}`]: direction,
@@ -35,6 +37,6 @@ const Flex: React.FC<FlexProps> = (props) => {
       {children}
     </div>
   );
-};
+});
 
 export default Flex;

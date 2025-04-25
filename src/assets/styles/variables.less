@@ -1,24 +1,64 @@
 @prefix: xui;
 
 :root {
-  // 颜色
-  --color-primary: #5570f1;
-  --color-status-success: #32936f;
-  --color-status-error: #f57e77;
-  --color-outline: #cfd3d4;
-  --color-outline-fill: #08090a;
-  --color-text-primary: #5e6366;
-  --color-text-secondary: #abafb1;
-  // 排版
-  --padding-small: 8px;
-  --padding-medium: 12px;
-  --padding-large: 16px;
-  // 文字
-  --font-size-small: 12px;
-  --font-size-medium: 16px;
-  --font-size-large: 20px;
-  // 圆角
+  /* ----------------------------------- 排版 ----------------------------------- */
+  // 横向间距-小
+  --spacing-x-small: 12px;
+  // 横向间距-中
+  --spacing-x-medium: 16px;
+  // 横向间距-大
+  --spacing-x-large: 20px;
+  // 纵向间距-小
+  --spacing-y-small: 10px;
+  // 纵向间距-中
+  --spacing-y-medium: 14px;
+  // 纵向间距-大
+  --spacing-y-large: 22px;
+
+  /* ----------------------------------- 文字 ----------------------------------- */
+  // 小字号
+  --font-size-small: 14px;
+  // 中字号
+  --font-size-medium: 14px;
+  // 大字号
+  --font-size-large: 16px;
+
+  /* ----------------------------------- 圆角 ----------------------------------- */
+  // 小圆角
   --border-radius-small: 4px;
-  --border-radius-medium: 8px;
-  --border-radius-large: 12px;
+  // 中圆角
+  --border-radius-medium: 6px;
+  // 大圆角
+  --border-radius-large: 8px;
+}
+
+/* ----------------------------------- 颜色 ----------------------------------- */
+.dark-theme-variables {
+  // 主色
+  --color-primary: #3b82f6;
+  // 成功色
+  --color-status-success: #14b8a6;
+  // 错误色
+  --color-status-error: #ef4444;
+  // 填充色
+  --color-fill: #374151;
+  // 文字主色
+  --color-text-primary: #fff;
+  // 文字次要色
+  --color-text-secondary: #9ca3af;
+}
+
+.light-theme-variables {
+  // 主色
+  --color-primary: #2563eb;
+  // 成功色
+  --color-status-success: #14b8a6;
+  // 错误色
+  --color-status-error: #ef4444;
+  // 填充色
+  --color-fill: #e5e7eb;
+  // 文字主色
+  --color-text-primary: #1f2937;
+  // 文字次要色
+  --color-text-secondary: #6b7280;
 }

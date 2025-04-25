@@ -7,7 +7,7 @@ export interface ButtonProps
    * 按钮类型
    * @default 'default'
    */
-  type?: 'default' | 'primary';
+  type?: 'default' | 'primary' | 'ghost' | 'link';
   /**
    * 按钮尺寸
    * @default 'medium'
