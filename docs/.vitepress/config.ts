@@ -4,6 +4,16 @@ import { vitepressDemoPlugin } from 'vitepress-demo-plugin';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  head: [
+    [
+      'script',
+      {
+        src: 'https://plausible.xav1er.com/js/script.js',
+        defer: 'true',
+        'data-domain': 'docs.xav1er.com',
+      },
+    ],
+  ],
   title: 'X-UI',
   description: '一个现代的 UI 组件库',
   themeConfig: {
