@@ -1,3 +1,21 @@
+@keyframes blink {
+  0% {
+    opacity: 0.5;
+  }
+
+  33% {
+    opacity: 1;
+  }
+
+  66% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .@{prefix}-form-item {
   margin-bottom: 20px;
 
@@ -26,6 +44,7 @@
       &.error {
         color: var(--color-status-error);
         font-weight: 500;
+        animation: blink 400ms;
       }
     }
   }
