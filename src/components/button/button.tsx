@@ -23,12 +23,13 @@ const Button: React.FC<ButtonProps> = (props) => {
     <button
       className={cn(prefix, className, {
         [`${prefix}--${type}`]: type,
+        [`${prefix}--disabled`]: disabled || loading,
         [`${prefix}--loading`]: loading,
         [`${prefix}--${size}`]: size,
         [`${prefix}--block`]: block,
         [`${prefix}--status-${status}`]: status,
       })}
-      onClick={(e) => !disabled && onClick?.(e)}
+      onClick={(e) => !disabled && !loading && onClick?.(e)}
       disabled={disabled}
       {...rest}
     >
@@ -37,5 +38,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     </button>
   );
 };
+
+Button.displayName = 'Button';
 
 export default Button;

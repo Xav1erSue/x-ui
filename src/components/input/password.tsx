@@ -1,11 +1,36 @@
 import { InputPasswordProps } from './types';
 import { forwardRef } from 'react';
 import Input from './input';
+import { Eye, EyeOff, LucideProps } from 'lucide-react';
+import { useToggle } from 'ahooks';
+import { getClsPrefix } from '../../utils';
+
+const clsPrefix = getClsPrefix('input');
 
 const InputPassword = forwardRef<HTMLInputElement | null, InputPasswordProps>(
   (props, ref) => {
-    return <Input {...props} ref={ref} type="password" />;
+    const [show, { toggle }] = useToggle();
+
+    const renderIcon = () => {
+      const iconProps: LucideProps = {
+        className: `${clsPrefix}__password-toggle`,
+        onClick: toggle,
+      };
+
+      return show ? <Eye {...iconProps} /> : <EyeOff {...iconProps} />;
+    };
+
+    return (
+      <Input
+        {...props}
+        ref={ref}
+        type={show ? 'text' : 'password'}
+        suffix={renderIcon()}
+      />
+    );
   },
 );
+
+InputPassword.displayName = 'Input.Password';
 
 export default InputPassword;

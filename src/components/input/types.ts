@@ -1,24 +1,25 @@
 import { OmitWithTypes } from '../../types/utils';
+import { FormItemBaseProperty } from '../form/types';
 
 export interface InputProps
   extends OmitWithTypes<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    'size' | 'value' | 'defaultValue' | 'onChange'
-  > {
+      React.InputHTMLAttributes<HTMLInputElement>,
+      'size' | 'value' | 'defaultValue' | 'onChange' | 'prefix'
+    >,
+    FormItemBaseProperty {
   /**
    * 输入框尺寸
    * @default 'medium'
    */
   size?: 'small' | 'medium' | 'large';
   /**
-   * 输入框状态
-   * @default 'default'
+   * 前缀
    */
-  status?: 'default' | 'success' | 'error';
+  prefix?: React.ReactNode;
   /**
-   * 输入框图标
+   * 后缀
    */
-  icon?: React.ReactNode;
+  suffix?: React.ReactNode;
   /**
    * 输入框值
    */
@@ -38,15 +39,4 @@ export interface InputProps
   allowClear?: boolean;
 }
 
-export interface InputPasswordProps
-  extends OmitWithTypes<InputProps, 'icon' | 'type'> {
-  /**
-   * 是否显示密码
-   * @default false
-   */
-  showPassword?: boolean;
-  /**
-   * 点击密码图标回调
-   */
-  onClickIcon?: (e: React.MouseEvent<HTMLDivElement>) => void;
-}
+export type InputPasswordProps = OmitWithTypes<InputProps, 'type' | 'suffix'>;

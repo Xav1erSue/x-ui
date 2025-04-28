@@ -11,3 +11,7 @@
 ## 尺寸
 
 <demo react="input/demo/size.tsx" />
+
+## 密码输入框
+
+<demo react="input/demo/password.tsx" />

@@ -33,3 +33,8 @@ export interface ButtonProps
    */
   status?: 'default' | 'success' | 'error';
 }
+
+export interface SubmitProps
+  extends OmitWithTypes<ButtonProps, 'loading' | 'onClick'> {
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>;
+}

@@ -7,17 +7,18 @@ import { useControllableValue } from 'ahooks';
 import { Flex } from '../flex';
 import { X } from 'lucide-react';
 
-const prefix = getClsPrefix('input');
+const clsPrefix = getClsPrefix('input');
 
 const Input = forwardRef<HTMLInputElement | null, InputProps>((props, ref) => {
   const {
-    icon,
     disabled,
     status = 'default',
     size = 'medium',
     id,
     className,
     style,
+    prefix,
+    suffix,
     allowClear = false,
     onFocus: propsOnFocus,
     onBlur: propsOnBlur,
@@ -49,11 +50,11 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>((props, ref) => {
     <Flex
       id={id}
       ref={containerRef}
-      className={cn(prefix, className, {
-        [`${prefix}--${size}`]: size,
-        [`${prefix}--disabled`]: disabled,
-        [`${prefix}--status-${status}`]: status,
-        [`${prefix}--focused`]: focused,
+      className={cn(clsPrefix, className, {
+        [`${clsPrefix}--${size}`]: size,
+        [`${clsPrefix}--disabled`]: disabled,
+        [`${clsPrefix}--status-${status}`]: status,
+        [`${clsPrefix}--focused`]: focused,
       })}
       onClick={() => inputRef.current?.focus()}
       style={style}
@@ -62,7 +63,7 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>((props, ref) => {
       gap={size}
       tabIndex={-1}
     >
-      {!!icon && <div className={`${prefix}__icon`}>{icon}</div>}
+      {!!prefix && <div className={`${clsPrefix}__prefix`}>{prefix}</div>}
       <input
         {...rest}
         ref={setInputRef}
@@ -73,10 +74,13 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>((props, ref) => {
         onBlur={handleBlur}
       />
       {allowClear && value ? (
-        <X className={`${prefix}__clear`} onClick={() => setValue('')} />
+        <X className={`${clsPrefix}__clear`} onClick={() => setValue('')} />
       ) : null}
+      {!!suffix && <div className={`${clsPrefix}__suffix`}>{suffix}</div>}
     </Flex>
   );
 });
+
+Input.displayName = 'Input';
 
 export default Input;

@@ -12,4 +12,5 @@ const Loading: React.FC<LoadingProps> = (props) => {
   );
 };
 
+Loading.displayName = 'Loading';
 export default Loading;

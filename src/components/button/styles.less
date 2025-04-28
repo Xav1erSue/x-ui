@@ -39,19 +39,23 @@
   );
 
   /* ----------------------------------- 伪类 ----------------------------------- */
-  &:hover:not(&:disabled) {
+  &:hover:not(&--disabled) {
     cursor: pointer;
   }
 
-  &:hover:is(&:disabled) {
+  &:hover:is(&--disabled) {
     cursor: not-allowed;
   }
 
-  &:active:not(&:disabled) {
+  &:hover:is(&--loading) {
+    cursor: auto;
+  }
+
+  &:active:not(&--disabled) {
     box-shadow: 0 0 0 4px var(--button-color-secondary);
   }
 
-  &:disabled {
+  &--disabled {
     opacity: 0.6;
   }
 
@@ -64,11 +68,11 @@
     border: 2px solid var(--button-color-primary);
   }
 
-  &--default:not(&:disabled):hover {
+  &--default:not(&--disabled):hover {
     .mix-with-white(color, var(--button-color-primary));
   }
 
-  &--default:not(&:disabled):active {
+  &--default:not(&--disabled):active {
     color: var(--button-color-primary);
   }
 
@@ -78,11 +82,11 @@
     background: var(--button-color-primary);
   }
 
-  &--primary:not(&:disabled):hover {
+  &--primary:not(&--disabled):hover {
     .mix-with-black(background, var(--button-color-primary));
   }
 
-  &--primary:not(&:disabled):active {
+  &--primary:not(&--disabled):active {
     background: var(--button-color-primary);
   }
 
@@ -91,13 +95,13 @@
     color: var(--button-color-primary);
   }
 
-  &--ghost:not(&:disabled):hover {
+  &--ghost:not(&--disabled):hover {
     .mix-with-black(color, var(--button-color-primary));
 
     background-color: var(--button-color-secondary);
   }
 
-  &--ghost:not(&:disabled):active {
+  &--ghost:not(&--disabled):active {
     background: none;
   }
 
@@ -106,11 +110,11 @@
     color: var(--button-color-primary);
   }
 
-  &--link:not(&:disabled):hover {
+  &--link:not(&--disabled):hover {
     .mix-with-black(color, var(--button-color-primary));
   }
 
-  &--link:not(&:disabled):active {
+  &--link:not(&--disabled):active {
     background: none;
   }
 
