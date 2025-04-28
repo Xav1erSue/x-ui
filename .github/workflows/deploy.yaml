@@ -1,0 +1,68 @@
+# 一个workflow，名为deploy to Tencent Cloud
+name: deploy to Tencent Cloud
+
+on: # 此CI/CD触发时的事件
+  push: # 在代码提交时自动触发
+    branches:
+      - main
+
+# 一个 CI/CD 的工作流有许多 jobs 组成，比如最典型的 job 是 lint，test，build。
+jobs:
+  build: # 构建job
+    runs-on: ubuntu-latest # 跑workflow的服务器系统
+    steps: # job的一系列动作
+      # 切换分支获取源码
+      - name: Checkout # step的名称，将会在 github action 的控制台中显示
+        # 选择一个action，可以理解为若干 steps.run，有利于代码复用
+        uses: actions/checkout@main
+
+      # 步骤2 给当前服务器安装node
+      - name: use node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18 # node版本
+
+      # 使用 pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: false
+
+      # cache
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      # cache fail and install dependencies
+      - name: Install dependencies
+        if: steps.pnpm-cache.outputs.cache-hit != 'true'
+        run: |
+          pnpm install
+
+      # 步骤4 打包node项目
+      - name: build
+        run: pnpm docs:build
+
+      # 部署到腾讯云服务器
+      - name: Deploy to Server # 第四步，rsync推送文件
+        uses: Xav1erSue/rsync-deploy@v1.0.2 # 使用别人包装好的步骤镜像
+        env:
+          DEPLOY_KEY: ${{ secrets.MACBOOK_PRO }} # 引用配置，SSH私钥
+          ARGS: '-avz --delete' # rsync参数
+          SERVER_PORT: '22' # SSH端口
+          FOLDER: './docs/.vitepress/dist/*' # 要推送的文件夹，路径相对于代码仓库的根目录
+          SERVER_IP: ${{ secrets.SSH_HOST }} # 引用配置，服务器的host名（IP或者域名domain.com）
+          USERNAME: ${{ secrets.SSH_USERNAME }} # 引用配置，服务器登录名
+          SERVER_DESTINATION: '/workspace/html/docs' # 部署到目标文件夹

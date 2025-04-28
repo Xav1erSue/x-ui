@@ -1,3 +1,4 @@
+import { KeyRound, Mail, User } from 'lucide-react';
 import { Button, Form, Input } from 'xui';
 
 const sleep = (time: number) => new Promise((res) => setTimeout(res, time));
@@ -19,15 +20,19 @@ const Demo: React.FC = () => {
         required
         rules={[{ required: true, message: '请输入账号' }]}
       >
-        <Input />
+        <Input prefix={<User />} />
       </Form.Item>
       <Form.Item
         name="password"
         label="密码"
         required
+        extra="需要同时包含小写字母、大写字母和数字"
         rules={[{ required: true, message: '请输入密码' }]}
       >
-        <Input.Password />
+        <Input.Password prefix={<KeyRound />} />
+      </Form.Item>
+      <Form.Item name="email" label="邮箱" cornerHint="（可选）">
+        <Input prefix={<Mail />} />
       </Form.Item>
 
       <Button.Submit type="primary" block onClick={handleSubmit}>

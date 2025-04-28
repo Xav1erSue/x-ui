@@ -1,4 +1,5 @@
 import type { FieldProps } from 'rc-field-form/es/Field';
+import type { FormProps as RcFormProps } from 'rc-field-form/lib/Form';
 
 export type ValidateStatus = 'error' | 'default' | 'success';
 
@@ -41,3 +42,13 @@ export interface FormItemLayoutProps
   errorList?: string[];
   children?: React.ReactNode;
 }
+
+export interface FormProps extends RcFormProps {
+  /**
+   * 表单尺寸，会透传给组件
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium' | 'large';
+}
+
+export type FormContextProps = Pick<FormProps, 'size'>;

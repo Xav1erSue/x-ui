@@ -1,7 +1,8 @@
 import { Field } from 'rc-field-form';
-import { cloneElement } from 'react';
+import { cloneElement, useContext } from 'react';
 import { FormItemProps, ValidateStatus } from './types';
 import FormItemLayout from './form-item-layout';
+import { FormContext } from './context';
 
 const FormItem: React.FC<FormItemProps> = (props) => {
   const {
@@ -13,6 +14,9 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     extra,
     ...restProps
   } = props;
+
+  const { size } = useContext(FormContext);
+
   return (
     <Field {...restProps}>
       {(control, context, form) => {
@@ -22,7 +26,15 @@ const FormItem: React.FC<FormItemProps> = (props) => {
           ? 'error'
           : 'default';
 
-        const childProps = { required, status, ...control };
+        const defaultPlaceholder = label ? `请输入${label}` : '请输入';
+
+        const childProps = {
+          required,
+          status,
+          placeholder: defaultPlaceholder,
+          size,
+          ...control,
+        };
 
         const childNode =
           typeof children === 'function'
