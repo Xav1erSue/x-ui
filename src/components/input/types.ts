@@ -5,9 +5,14 @@ import { FormItemBaseProperty } from '../form/types';
 export interface InputProps
   extends OmitWithTypes<
       React.InputHTMLAttributes<HTMLInputElement>,
-      'size' | 'value' | 'defaultValue' | 'onChange' | 'prefix'
+      'size' | 'value' | 'defaultValue' | 'onChange' | 'prefix' | 'disabled'
     >,
     FormItemBaseProperty {
+  /**
+   * 是否禁用
+   * @default false
+   */
+  disabled?: boolean;
   /**
    * 输入框尺寸
    * @default 'medium'

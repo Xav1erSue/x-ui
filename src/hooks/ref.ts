@@ -25,3 +25,32 @@ export const useForwardedRef = <T>(propsRef: React.ForwardedRef<T>) => {
 
   return [ref, setRef] as const;
 };
+
+/**
+ * 合并多个 ref，同时支持 ref object 和 ref callback
+ */
+export const useMergeRefs = <T>(
+  refs: Array<
+    React.RefObject<T> | React.RefCallback<T> | React.ForwardedRef<T>
+  >,
+) => {
+  const mergedRef = useRef<T>(null);
+
+  const setRef = (element: T | null) => {
+    if (mergedRef.current) return;
+
+    refs.forEach((ref) => {
+      // 处理 ref callback 的情况
+      if (typeof ref === 'function') {
+        ref(element);
+      } else if (ref) {
+        ref.current = element;
+      } else {
+        console.error('ref is not a valid ref');
+      }
+    });
+    mergedRef.current = element;
+  };
+
+  return [mergedRef, setRef] as const;
+};

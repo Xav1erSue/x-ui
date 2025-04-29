@@ -13,10 +13,12 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.27.8",
     "@tanstack/react-table": "^8.21.3",
     "ahooks": "^3.8.4",
     "classnames": "^2.5.1",
     "lucide-react": "^0.503.0",
+    "motion": "^12.9.2",
     "normalize.css": "^8.0.1",
     "radash": "^12.1.0",
     "rc-field-form": "^2.7.0",

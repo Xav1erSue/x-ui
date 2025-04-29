@@ -1,0 +1,127 @@
+import { HTMLMotionProps } from 'motion/react';
+import { OmitWithTypes } from '../../types/utils';
+import { ValidateStatus } from '../form/types';
+
+export type RawValueType = string | number;
+
+export interface OptionType {
+  /**
+   * 选项标签
+   */
+  label?: string;
+  /**
+   * 选项值
+   */
+  value: RawValueType;
+  /**
+   * 是否禁用
+   * @default false
+   */
+  disabled?: boolean;
+  /**
+   * 选项描述
+   */
+  description?: string;
+}
+
+export type ValueType =
+  | RawValueType
+  | RawValueType[]
+  | OptionType
+  | OptionType[]
+  | undefined;
+
+export interface SelectProps
+  extends OmitWithTypes<
+    React.InputHTMLAttributes<HTMLDivElement>,
+    'value' | 'defaultValue' | 'onChange' | 'size'
+  > {
+  /**
+   * 选择模式：单选、多选、标签
+   * @default "single"
+   */
+  mode?: 'single' | 'multiple' | 'tags';
+  /**
+   * 选项
+   */
+  options?: OptionType[];
+  /**
+   * 默认选项，用作回显使用
+   */
+  defaultOptions?: OptionType[];
+  /**
+   * 是否禁用
+   * @default false
+   */
+  disabled?: boolean;
+  /**
+   * 是否加载中
+   * @default false
+   */
+  loading?: boolean;
+  /**
+   * 状态
+   * @default "default"
+   */
+  status?: ValidateStatus;
+  /**
+   * 尺寸
+   * @default "medium"
+   */
+  size?: 'small' | 'medium' | 'large';
+  /**
+   * 是否将选项的 label 包装在 value 中
+   * @default false
+   */
+  labelInValue?: boolean;
+  /**
+   * 选中项的值
+   * @group Props
+   */
+  value?: ValueType;
+  /**
+   * 默认选中项的值
+   * @group Props
+   */
+  defaultValue?: ValueType;
+  /**
+   * 选中项的值改变时的回调，option 只在单选模式下生效
+   * @group Function
+   */
+  onChange?: (value: ValueType, option?: OptionType) => void;
+  /**
+   * 受控是否显示弹窗
+   * @group Props
+   */
+  visible?: boolean;
+  /**
+   * 默认显示状态
+   * @group Props
+   * @default false
+   */
+  defaultVisible?: boolean;
+  /**
+   * 显示状态改变时的回调
+   * @group Function
+   */
+  onVisibleChange?: (visible: boolean) => void;
+}
+
+export interface SelectContextProps {
+  mode: 'single' | 'multiple' | 'tags';
+  labelInValue: boolean;
+  value: ValueType;
+  handleChange: (option: OptionType) => void;
+  hoveredIndex: number;
+  setHoveredIndex: (index: number) => void;
+}
+
+export interface OptionListProps extends HTMLMotionProps<'div'> {
+  visible: boolean;
+  options: OptionType[];
+}
+
+export interface OptionProps {
+  index: number;
+  option: OptionType;
+}

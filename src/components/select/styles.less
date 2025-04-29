@@ -1,0 +1,144 @@
+.@{prefix}-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: fit-content;
+  min-width: 400px;
+  max-width: 100%;
+  border: 1px solid var(--color-fill);
+  border-radius: var(--border-radius-large);
+  transition: all 0.05s ease-in-out;
+
+  /* ----------------------------------- 状态 ----------------------------------- */
+  &--status-default {
+    --select-color-primary: var(--color-primary);
+  }
+
+  &--status-success {
+    --select-color-primary: var(--color-status-success);
+
+    border-color: var(--color-status-success);
+  }
+
+  &--status-error {
+    --select-color-primary: var(--color-status-error);
+
+    border-color: var(--color-status-error);
+  }
+
+  --select-color-secondary: color-mix(
+    in srgb,
+    var(--select-color-primary) 25%,
+    white 25%
+  );
+
+  /* ----------------------------------- 伪类 ----------------------------------- */
+  &:hover:is(&--disabled) {
+    cursor: not-allowed;
+  }
+
+  &:focus:not(&--disabled),
+  &:focus-within:not(&--disabled),
+  &--focused:not(&--disabled) {
+    border-color: var(--select-color-primary);
+    box-shadow: 0 0 0 4px var(--select-color-secondary);
+  }
+
+  &--disabled {
+    opacity: 0.6;
+  }
+
+  // 清除浏览器默认样式
+  &:focus-visible {
+    outline: none;
+  }
+
+  /* ----------------------------------- 尺寸 ----------------------------------- */
+  &--small {
+    padding: var(--spacing-y-small) var(--spacing-x-small);
+
+    --select-font-size: var(--font-size-small);
+  }
+
+  &--medium {
+    padding: var(--spacing-y-medium) var(--spacing-x-medium);
+
+    --select-font-size: var(--font-size-medium);
+  }
+
+  &--large {
+    padding: var(--spacing-y-large) var(--spacing-x-large);
+
+    --select-font-size: var(--font-size-large);
+  }
+
+  /* ----------------------------------- 元素 ----------------------------------- */
+  &__label {
+    color: var(--color-text-primary);
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.075px;
+
+    &--placeholder {
+      color: var(--color-text-secondary);
+    }
+
+    @oneTextOverflow();
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* ----------------------------------- 下拉框 ---------------------------------- */
+.@{prefix}-select__option-list {
+  padding: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.07px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-fill);
+  border-radius: var(--border-radius-large);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
+
+  &__item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+
+    /* ----------------------------------- 状态 ----------------------------------- */
+    &--hovered {
+      background: var(--color-bg-secondary);
+      border-radius: var(--border-radius-large);
+      cursor: pointer;
+    }
+
+    &--disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    /* ----------------------------------- 元素 ----------------------------------- */
+    &__label {
+      margin-right: 4px;
+      color: var(--color-text-primary);
+    }
+
+    &__description {
+      color: var(--color-text-secondary);
+    }
+
+    .lucide {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      color: #3b82f6;
+    }
+  }
+}

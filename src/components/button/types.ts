@@ -1,5 +1,6 @@
 import { ButtonHTMLAttributes } from 'react';
 import { OmitWithTypes } from '../../types/utils';
+import { ValidateStatus } from '../form/types';
 
 export interface ButtonProps
   extends OmitWithTypes<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
@@ -31,7 +32,7 @@ export interface ButtonProps
    * 按钮状态
    * @default 'default'
    */
-  status?: 'default' | 'success' | 'error';
+  status?: ValidateStatus;
 }
 
 export interface SubmitProps

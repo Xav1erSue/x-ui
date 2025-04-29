@@ -6,3 +6,4 @@ export * from './flex';
 /* ----------------------------------- 表单 ----------------------------------- */
 export * from './form';
 export * from './input';
+export * from './select';

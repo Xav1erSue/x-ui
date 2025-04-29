@@ -53,6 +53,7 @@ export default defineConfig({
             items: [
               { text: 'Form 表单', link: '/form' },
               { text: 'Input 输入框', link: '/input' },
+              { text: 'Select 选择器', link: '/select' },
             ],
           },
         ],
