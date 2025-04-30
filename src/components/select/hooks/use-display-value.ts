@@ -23,14 +23,14 @@ export const useDisplayValue = (props: UseDisplayValueProps) => {
     });
   }, [options]);
 
-  const displayValue = useMemo(() => {
+  const displayValue = useMemo<RawValueType>(() => {
     if (mode === 'single') {
       if (labelInValue) {
         const option = value as OptionType;
         return option?.label ?? option?.value;
       } else {
         const option = valueOptionsCacheMap.get(value as RawValueType);
-        return option?.label ?? option?.value;
+        return option?.label ?? option?.value as string;
       }
     } else {
       if (labelInValue) {

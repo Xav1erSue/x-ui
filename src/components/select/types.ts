@@ -75,6 +75,16 @@ export interface SelectProps
    */
   labelInValue?: boolean;
   /**
+   * 是否显示搜索框
+   * @default false
+   */
+  showSearch?: boolean;
+  /**
+   * 过滤选项
+   * @default false
+   */
+  filterOption?: boolean | ((search: string, option: OptionType) => boolean);
+  /**
    * 选中项的值
    * @group Props
    */
@@ -105,6 +115,11 @@ export interface SelectProps
    * @group Function
    */
   onVisibleChange?: (visible: boolean) => void;
+}
+
+export interface SelectRef {
+  focus: () => void;
+  blur: () => void;
 }
 
 export interface SelectContextProps {

@@ -1,7 +1,7 @@
+import cn from 'classnames';
+import { LoaderCircle } from 'lucide-react';
 import { LoadingProps } from './types';
 import { getClsPrefix } from '../../utils';
-import { LoaderCircle } from 'lucide-react';
-import cn from 'classnames';
 
 const prefix = getClsPrefix('loading');
 

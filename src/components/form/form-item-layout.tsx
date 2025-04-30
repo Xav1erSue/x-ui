@@ -1,7 +1,7 @@
+import cn from 'classnames';
+import { FormItemLayoutProps } from './types';
 import { getClsPrefix } from '../../utils';
 import { Flex } from '../flex';
-import { FormItemLayoutProps } from './types';
-import cn from 'classnames';
 
 const clsPrefix = getClsPrefix('form-item');
 

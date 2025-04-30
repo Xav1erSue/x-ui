@@ -1,8 +1,8 @@
-import { InputPasswordProps } from './types';
+import { useToggle } from 'ahooks';
+import { Eye, EyeOff, LucideProps } from 'lucide-react';
 import { forwardRef } from 'react';
 import Input from './input';
-import { Eye, EyeOff, LucideProps } from 'lucide-react';
-import { useToggle } from 'ahooks';
+import { InputPasswordProps } from './types';
 import { getClsPrefix } from '../../utils';
 
 const clsPrefix = getClsPrefix('input');

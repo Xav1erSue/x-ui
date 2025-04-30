@@ -1,11 +1,11 @@
-import { InputProps } from './types';
+import { useControllableValue } from 'ahooks';
 import cn from 'classnames';
+import { X } from 'lucide-react';
+import { forwardRef, useRef, useState } from 'react';
+import { InputProps } from './types';
 import { useForwardedRef } from '../../hooks';
 import { getClsPrefix } from '../../utils';
-import { forwardRef, useRef, useState } from 'react';
-import { useControllableValue } from 'ahooks';
 import { Flex } from '../flex';
-import { X } from 'lucide-react';
 
 const clsPrefix = getClsPrefix('input');
 

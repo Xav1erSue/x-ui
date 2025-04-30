@@ -1,8 +1,8 @@
 import { Field } from 'rc-field-form';
 import { cloneElement, useContext } from 'react';
-import { FormItemProps, ValidateStatus } from './types';
-import FormItemLayout from './form-item-layout';
 import { FormContext } from './context';
+import FormItemLayout from './form-item-layout';
+import { FormItemProps, ValidateStatus } from './types';
 
 const FormItem: React.FC<FormItemProps> = (props) => {
   const {

@@ -1,7 +1,7 @@
-import { FlexProps } from './types';
 import cn from 'classnames';
-import { getClsPrefix } from '../../utils';
 import { forwardRef } from 'react';
+import { FlexProps } from './types';
+import { getClsPrefix } from '../../utils';
 
 const prefix = getClsPrefix('flex');
 

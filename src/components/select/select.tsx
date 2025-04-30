@@ -1,14 +1,3 @@
-import { useClickAway } from '../../hooks';
-import { getClsPrefix } from '../../utils';
-import {
-  OptionType,
-  RawValueType,
-  SelectContextProps,
-  SelectProps,
-  ValueType,
-} from './types';
-import { omit } from 'radash';
-import cn from 'classnames';
 import {
   useFloating,
   autoUpdate,
@@ -16,31 +5,58 @@ import {
   offset,
   size,
 } from '@floating-ui/react';
-import { useState } from 'react';
-import { useDisplayValue } from './hooks';
-import { ChevronsUpDown } from 'lucide-react';
-import { isSelected, KeyCode } from './helper';
-import { SelectContext } from './context';
-import OptionList from './option-list';
 import { useControllableValue } from 'ahooks';
+import cn from 'classnames';
+import { ChevronsUpDown } from 'lucide-react';
+import { omit } from 'radash';
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
+import { SelectContext } from './context';
+import { findNextOption, isSelected, KeyCode } from './helper';
+import { useDisplayValue, useSearchOptions } from './hooks';
+import OptionList from './option-list';
+import {
+  OptionType,
+  RawValueType,
+  SelectContextProps,
+  SelectProps,
+  SelectRef,
+  ValueType,
+} from './types';
+import { useClickAway } from '../../hooks';
+import { getClsPrefix } from '../../utils';
 
 const clsPrefix = getClsPrefix('select');
 
-const Select: React.FC<SelectProps> = (props) => {
+const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
   const {
     mode = 'single',
     size: propsSize = 'medium',
     status = 'default',
     placeholder,
-    options,
+    options: dataSource,
     defaultOptions,
     labelInValue = false,
     disabled,
+    showSearch = false,
+    filterOption = false,
     onKeyDown: propsOnKeyDown,
     ...rest
   } = props;
 
   const [hoveredIndex, setHoveredIndex] = useState<number>(-1);
+
+  const { options, search, setSearch } = useSearchOptions({
+    dataSource,
+    filterOption,
+  });
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const { refs, floatingStyles } = useFloating({
     whileElementsMounted: autoUpdate,
@@ -57,10 +73,25 @@ const Select: React.FC<SelectProps> = (props) => {
     ],
   });
 
-  useClickAway(() => setVisible(false), [
-    refs.reference,
-    refs.floating,
-  ] as Array<React.MutableRefObject<HTMLElement>>);
+  const focus = () => {
+    setVisible(true);
+    inputRef.current?.focus();
+  };
+
+  const blur = () => {
+    setVisible(false);
+    setSearch('');
+    inputRef.current?.blur();
+  };
+
+  useImperativeHandle(ref, () => ({
+    focus,
+    blur,
+  }));
+
+  useClickAway(() => blur(), [refs.reference, refs.floating] as Array<
+    React.MutableRefObject<HTMLElement>
+  >);
 
   const [value, setValue] = useControllableValue<ValueType>(props);
   const [visible, setVisible] = useControllableValue<boolean>(props, {
@@ -77,12 +108,15 @@ const Select: React.FC<SelectProps> = (props) => {
     defaultOptions,
   });
 
+  useEffect(() => {
+    setHoveredIndex(-1);
+  }, [options]);
+
   const handleChange = (option: OptionType) => {
     const checked = isSelected(mode, labelInValue, value, option);
 
     if (mode === 'single') {
       setValue(labelInValue ? option : option.value);
-      // 单选模式下，选中后自动关闭弹窗
       setVisible(false);
     } else {
       if (labelInValue) {
@@ -100,42 +134,31 @@ const Select: React.FC<SelectProps> = (props) => {
         setValue(newValue);
       }
     }
+    setSearch('');
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     propsOnKeyDown?.(e);
 
-    if (!options?.length) return;
+    if (!options?.length || disabled) return;
 
     switch (e.key) {
-      case KeyCode.ArrowDown: {
-        e.preventDefault();
-        if (hoveredIndex === options.length - 1) {
-          setHoveredIndex(0);
-        } else {
-          setHoveredIndex(hoveredIndex + 1);
-        }
-        break;
-      }
-
+      case KeyCode.ArrowDown:
       case KeyCode.ArrowUp: {
         e.preventDefault();
-        if (hoveredIndex === 0) {
-          setHoveredIndex(options?.length - 1);
-        } else {
-          setHoveredIndex(hoveredIndex - 1);
-        }
+        const nextIndex = findNextOption(options, hoveredIndex, e.key);
+        setHoveredIndex(nextIndex);
         break;
       }
 
       case KeyCode.Enter: {
         if (visible) {
           handleChange(options[hoveredIndex]);
-          setVisible(false);
-        } else {
-          setVisible(true);
-        }
 
+          if (mode === 'single') setVisible(false);
+        } else {
+          focus();
+        }
         break;
       }
 
@@ -148,15 +171,26 @@ const Select: React.FC<SelectProps> = (props) => {
 
       case KeyCode.Escape: {
         setVisible(false);
+        break;
+      }
+
+      case KeyCode.Backspace: {
+        if (
+          showSearch &&
+          !search &&
+          mode !== 'single' &&
+          Array.isArray(value)
+        ) {
+          const newValue = value.slice(0, -1);
+          setValue(newValue);
+        }
       }
     }
   };
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    if (!disabled) {
-      setVisible(true);
-    }
+    if (!disabled) focus();
   };
 
   const contextValue: SelectContextProps = {
@@ -190,12 +224,32 @@ const Select: React.FC<SelectProps> = (props) => {
         onKeyDown={handleKeyDown}
         tabIndex={disabled ? -1 : 0}
       >
-        <div
-          className={cn(`${clsPrefix}__label`, {
-            [`${clsPrefix}__label--placeholder`]: !displayValue,
-          })}
-        >
-          {displayValue || placeholder}
+        <div className={`${clsPrefix}__label`}>
+          {mode !== 'single' && (
+            <span className={cn(`${clsPrefix}__label__text`)}>
+              {displayValue}
+            </span>
+          )}
+          <input
+            ref={inputRef}
+            autoComplete="off"
+            className={`${clsPrefix}__label__input`}
+            type="text"
+            role="combobox"
+            aria-expanded={visible}
+            aria-controls={refs.floating.current?.id}
+            readOnly={!showSearch}
+            value={
+              showSearch && visible
+                ? search
+                : mode === 'single'
+                ? displayValue
+                : ''
+            }
+            tabIndex={-1}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder={!displayValue ? placeholder : undefined}
+          />
         </div>
         <ChevronsUpDown className={`${clsPrefix}__icon`} />
       </div>
@@ -207,7 +261,7 @@ const Select: React.FC<SelectProps> = (props) => {
       />
     </SelectContext.Provider>
   );
-};
+});
 
 Select.displayName = 'Select';
 export default Select;

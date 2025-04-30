@@ -28,8 +28,6 @@ export const useClickAway = <T extends HTMLElement>(
       );
     });
 
-    return () => {
-      abortController.abort();
-    };
+    return () => abortController.abort();
   }, [handler, refs, eventName]);
 };

@@ -1,6 +1,6 @@
-import { getClsPrefix } from '../../utils';
 import cn from 'classnames';
 import { ButtonProps } from './types';
+import { getClsPrefix } from '../../utils';
 import { Loading } from '../loading';
 
 const prefix = getClsPrefix('button');

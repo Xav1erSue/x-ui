@@ -73,17 +73,23 @@
   }
 
   /* ----------------------------------- 元素 ----------------------------------- */
+
   &__label {
+    flex: 1;
     color: var(--color-text-primary);
     font-weight: 500;
     font-size: 15px;
     letter-spacing: 0.075px;
 
-    &--placeholder {
-      color: var(--color-text-secondary);
+    @oneTextOverflow();
+
+    &__text {
+      pointer-events: none;
     }
 
-    @oneTextOverflow();
+    &__input::placeholder {
+      color: var(--color-text-secondary);
+    }
   }
 
   &__icon {
@@ -107,13 +113,13 @@
 
   &__item {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     align-items: center;
     justify-content: space-between;
     padding: 8px 12px;
 
     /* ----------------------------------- 状态 ----------------------------------- */
-    &--hovered {
+    &--hovered:not(&--disabled) {
       background: var(--color-bg-secondary);
       border-radius: var(--border-radius-large);
       cursor: pointer;

@@ -1,10 +1,10 @@
+import cn from 'classnames';
+import { Check } from 'lucide-react';
 import { useContext } from 'react';
 import { SelectContext } from './context';
 import { isSelected } from './helper';
 import { OptionProps } from './types';
 import { getClsPrefix } from '../../utils';
-import { Check } from 'lucide-react';
-import cn from 'classnames';
 
 const clsPrefix = getClsPrefix('select__option-list');
 

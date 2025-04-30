@@ -1,10 +1,10 @@
-import { createPortal } from 'react-dom';
-import { getClsPrefix } from '../../utils';
-import { forwardRef } from 'react';
-import { OptionListProps } from './types';
-import Option from './option';
-import { motion, AnimatePresence } from 'motion/react';
 import cn from 'classnames';
+import { motion, AnimatePresence } from 'motion/react';
+import { forwardRef } from 'react';
+import { createPortal } from 'react-dom';
+import Option from './option';
+import { OptionListProps } from './types';
+import { getClsPrefix } from '../../utils';
 
 const clsPrefix = getClsPrefix('select__option-list');
 
@@ -24,9 +24,13 @@ const OptionList = forwardRef<HTMLDivElement, OptionListProps>((props, ref) => {
           transition={{ duration: 0.1 }}
           {...rest}
         >
-          {options?.map((option, index) => (
-            <Option key={option.value} option={option} index={index} />
-          ))}
+          {options.length ? (
+            options.map((option, index) => (
+              <Option key={option.value} option={option} index={index} />
+            ))
+          ) : (
+            <div className={`${clsPrefix}__empty`}>暂无数据</div>
+          )}
         </motion.div>
       )}
     </AnimatePresence>,
