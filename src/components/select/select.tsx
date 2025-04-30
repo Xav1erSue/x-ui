@@ -17,9 +17,10 @@ import {
   useState,
 } from 'react';
 import { SelectContext } from './context';
-import { findNextOption, isSelected, KeyCode } from './helper';
-import { useDisplayValue, useSearchOptions } from './hooks';
+import { findNextOption, KeyCode } from './helper';
+import { useSelectedOptions, useSearchOptions } from './hooks';
 import OptionList from './option-list';
+import Tag from './tag';
 import {
   OptionType,
   RawValueType,
@@ -75,13 +76,13 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
 
   const focus = () => {
     setVisible(true);
-    inputRef.current?.focus();
+    if (showSearch) inputRef.current?.focus();
   };
 
   const blur = () => {
     setVisible(false);
     setSearch('');
-    inputRef.current?.blur();
+    if (showSearch) inputRef.current?.blur();
   };
 
   useImperativeHandle(ref, () => ({
@@ -100,7 +101,7 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
     trigger: 'onVisibleChange',
   });
 
-  const { displayValue } = useDisplayValue({
+  const { selectedOptions } = useSelectedOptions({
     options,
     mode,
     labelInValue,
@@ -112,8 +113,24 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
     setHoveredIndex(-1);
   }, [options]);
 
+  const isSelected = (option: OptionType) => {
+    if (mode === 'single') {
+      if (labelInValue) {
+        return value === option;
+      } else {
+        return value === option.value;
+      }
+    } else {
+      if (labelInValue) {
+        return (value as OptionType[])?.some((v) => v.value === option.value);
+      } else {
+        return (value as RawValueType[])?.some((v) => v === option.value);
+      }
+    }
+  };
+
   const handleChange = (option: OptionType) => {
-    const checked = isSelected(mode, labelInValue, value, option);
+    const checked = isSelected(option);
 
     if (mode === 'single') {
       setValue(labelInValue ? option : option.value);
@@ -194,12 +211,37 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
   };
 
   const contextValue: SelectContextProps = {
-    mode,
-    labelInValue,
-    value,
     handleChange,
     hoveredIndex,
     setHoveredIndex,
+    isSelected,
+  };
+
+  const renderLabel = () => {
+    if (mode === 'single' || !selectedOptions.length) return null;
+    if (mode === 'multiple') {
+      return (
+        <span className={`${clsPrefix}__label__text`}>
+          {selectedOptions
+            ?.map((option) => option.label ?? option.value)
+            .join('、')}
+        </span>
+      );
+    } else {
+      return (
+        <>
+          {selectedOptions?.map((option) => (
+            <Tag key={option.value} option={option} />
+          ))}
+        </>
+      );
+    }
+  };
+
+  const getInputValue = () => {
+    if (showSearch && visible) return search;
+    if (mode === 'single')
+      return selectedOptions[0]?.label ?? selectedOptions[0]?.value;
   };
 
   return (
@@ -219,17 +261,15 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
           [`${clsPrefix}--${propsSize}`]: propsSize,
           [`${clsPrefix}--status-${status}`]: status,
           [`${clsPrefix}--focused`]: visible,
+          [`${clsPrefix}--tag`]: mode === 'tags',
+          [`${clsPrefix}--has-value`]: selectedOptions.length,
         })}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         tabIndex={disabled ? -1 : 0}
       >
         <div className={`${clsPrefix}__label`}>
-          {mode !== 'single' && (
-            <span className={cn(`${clsPrefix}__label__text`)}>
-              {displayValue}
-            </span>
-          )}
+          {renderLabel()}
           <input
             ref={inputRef}
             autoComplete="off"
@@ -237,18 +277,11 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
             type="text"
             role="combobox"
             aria-expanded={visible}
-            aria-controls={refs.floating.current?.id}
             readOnly={!showSearch}
-            value={
-              showSearch && visible
-                ? search
-                : mode === 'single'
-                ? displayValue
-                : ''
-            }
+            value={getInputValue()}
             tabIndex={-1}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder={!displayValue ? placeholder : undefined}
+            placeholder={!selectedOptions.length ? placeholder : undefined}
           />
         </div>
         <ChevronsUpDown className={`${clsPrefix}__icon`} />

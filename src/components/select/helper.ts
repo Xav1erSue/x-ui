@@ -1,4 +1,4 @@
-import { OptionType, RawValueType, SelectProps, ValueType } from './types';
+import { OptionType, } from './types';
 
 export enum KeyCode {
   ArrowDown = 'ArrowDown',
@@ -9,29 +9,7 @@ export enum KeyCode {
   Backspace = 'Backspace',
 }
 
-/**
- * 判断当前选项是否被选中
- */
-export const isSelected = (
-  mode: SelectProps['mode'],
-  labelInValue: boolean,
-  value: ValueType,
-  option: OptionType,
-) => {
-  if (mode === 'single') {
-    if (labelInValue) {
-      return value === option;
-    } else {
-      return value === option.value;
-    }
-  } else {
-    if (labelInValue) {
-      return (value as OptionType[])?.some((v) => v.value === option.value);
-    } else {
-      return (value as RawValueType[])?.some((v) => v === option.value);
-    }
-  }
-};
+
 
 /**
  * 查找下一个（或上一个）第一个非禁用态的选项

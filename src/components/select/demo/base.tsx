@@ -9,6 +9,14 @@ const options: OptionType[] = [
     disabled: true,
   },
   { label: '🇺🇸 United States', value: 3, description: '(+1)' },
+  { label: '🇨🇳 China', value: 4, description: '(+86)' },
+  { label: '🇯🇵 Japan', value: 5, description: '(+81)' },
+  { label: '🇰🇷 South Korea', value: 6, description: '(+82)' },
+  {
+    label:
+      '超长文案超长文案超长文案超长文案超长文案超长文案超长文案超长文案超长文案超长文案超长文案超长文案超长文案超长文案超长文案',
+    value: -1,
+  },
 ];
 
 const Demo: React.FC = () => {
@@ -46,6 +54,14 @@ const Demo: React.FC = () => {
         showSearch
         filterOption
         placeholder="搜索多选"
+        options={options}
+        onChange={console.log}
+      />
+      <Select
+        mode="tags"
+        showSearch
+        filterOption
+        placeholder="标签"
         options={options}
         onChange={console.log}
       />

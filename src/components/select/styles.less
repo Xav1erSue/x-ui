@@ -7,7 +7,8 @@
   max-width: 100%;
   border: 1px solid var(--color-fill);
   border-radius: var(--border-radius-large);
-  transition: all 0.05s ease-in-out;
+  transition: 0.05s ease-in-out;
+  transition-property: border-color, box-shadow, opacity;
 
   /* ----------------------------------- 状态 ----------------------------------- */
   &--status-default {
@@ -72,24 +73,48 @@
     --select-font-size: var(--font-size-large);
   }
 
-  /* ----------------------------------- 元素 ----------------------------------- */
+  &--tag:is(&--has-value) {
+    padding: 8px;
+  }
 
+  /* ----------------------------------- 元素 ----------------------------------- */
   &__label {
+    display: inline-flex;
     flex: 1;
+    flex-wrap: wrap;
+    gap: 5px;
+    overflow: hidden;
     color: var(--color-text-primary);
     font-weight: 500;
     font-size: 15px;
     letter-spacing: 0.075px;
 
-    @oneTextOverflow();
-
     &__text {
-      pointer-events: none;
+      flex: 999;
+      flex-shrink: 0;
+      line-height: 100%;
+      @oneTextOverflow();
+    }
+
+    &__input {
+      flex: 1;
+      min-width: 0;
+      color: var(--color-text-primary);
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.075px;
+
+      @oneTextOverflow();
     }
 
     &__input::placeholder {
       color: var(--color-text-secondary);
     }
+  }
+
+  &:not(&--tag) &__label {
+    flex-wrap: nowrap;
+    @oneTextOverflow();
   }
 
   &__icon {
@@ -145,6 +170,49 @@
       width: 16px;
       height: 16px;
       color: #3b82f6;
+    }
+  }
+}
+
+/* ----------------------------------- 标签 ----------------------------------- */
+.@{prefix}-select__tag {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  padding: 6px;
+  border: 1px solid var(--color-fill);
+  border-radius: 999px;
+
+  &__label {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.07px;
+
+    @oneTextOverflow();
+  }
+
+  &__delete {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    color: var(--color-text-secondary);
+    background: var(--color-fill);
+    border-radius: 50%;
+
+    .lucide {
+      width: 8px;
+      height: 8px;
+    }
+
+    &:hover {
+      color: var(--color-text-primary);
+      cursor: pointer;
     }
   }
 }

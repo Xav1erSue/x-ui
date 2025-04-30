@@ -2,7 +2,6 @@ import cn from 'classnames';
 import { Check } from 'lucide-react';
 import { useContext } from 'react';
 import { SelectContext } from './context';
-import { isSelected } from './helper';
 import { OptionProps } from './types';
 import { getClsPrefix } from '../../utils';
 
@@ -11,16 +10,10 @@ const clsPrefix = getClsPrefix('select__option-list');
 const Option: React.FC<OptionProps> = (props) => {
   const { option, index } = props;
 
-  const {
-    mode,
-    labelInValue,
-    value,
-    hoveredIndex,
-    setHoveredIndex,
-    handleChange,
-  } = useContext(SelectContext);
+  const { hoveredIndex, setHoveredIndex, handleChange, isSelected } =
+    useContext(SelectContext);
 
-  const selected = isSelected(mode, labelInValue, value, option);
+  const selected = isSelected(option);
 
   const handleClick = () => {
     if (option.disabled) return;

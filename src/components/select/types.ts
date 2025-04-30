@@ -123,12 +123,10 @@ export interface SelectRef {
 }
 
 export interface SelectContextProps {
-  mode: 'single' | 'multiple' | 'tags';
-  labelInValue: boolean;
-  value: ValueType;
-  handleChange: (option: OptionType) => void;
   hoveredIndex: number;
   setHoveredIndex: (index: number) => void;
+  handleChange: (option: OptionType) => void;
+  isSelected: (option: OptionType) => boolean;
 }
 
 export interface OptionListProps extends HTMLMotionProps<'div'> {
@@ -139,4 +137,8 @@ export interface OptionListProps extends HTMLMotionProps<'div'> {
 export interface OptionProps {
   index: number;
   option: OptionType;
+}
+
+export interface SelectTagProps {
+  option?: OptionType;
 }

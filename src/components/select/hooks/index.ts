@@ -1,2 +1,2 @@
-export * from './use-display-value';
+export * from './use-selected-options';
 export * from './use-search-options';

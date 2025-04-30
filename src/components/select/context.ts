@@ -2,10 +2,8 @@ import { createContext } from 'react';
 import { SelectContextProps } from './types';
 
 export const SelectContext = createContext<SelectContextProps>({
-  mode: 'single',
-  labelInValue: false,
-  value: [],
-  handleChange: () => {},
+  handleChange: () => { },
   hoveredIndex: -1,
-  setHoveredIndex: () => {},
+  setHoveredIndex: () => { },
+  isSelected: () => false,
 });
