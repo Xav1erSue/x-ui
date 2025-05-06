@@ -14,7 +14,7 @@ export default defineConfig({
       },
     ],
   ],
-  title: 'X-UI',
+  title: 'Lessline',
   description: '一个现代的 UI 组件库',
   themeConfig: {
     nav: [
@@ -60,7 +60,7 @@ export default defineConfig({
       },
     },
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/Xav1erSue/x-ui' },
+      { icon: 'github', link: 'https://github.com/Xav1erSue/Lessline' },
     ],
   },
   markdown: {
@@ -73,7 +73,7 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        xui: path.resolve(__dirname, '../../src/index.ts'),
+        lessline: path.resolve(__dirname, '../../src/index.ts'),
       },
     },
   },

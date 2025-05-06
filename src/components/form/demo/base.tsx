@@ -1,5 +1,5 @@
+import { Button, Form, Input } from 'lessline';
 import { KeyRound, Mail, User } from 'lucide-react';
-import { Button, Form, Input } from 'xui';
 
 const sleep = (time: number) => new Promise((res) => setTimeout(res, time));
 

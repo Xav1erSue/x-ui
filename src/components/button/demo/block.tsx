@@ -1,4 +1,4 @@
-import { Button, Flex } from 'xui';
+import { Button, Flex } from 'lessline';
 
 const Demo: React.FC = () => {
   return (

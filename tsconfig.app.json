@@ -17,7 +17,7 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "xui": ["src"]
+      "lessline": ["src"]
     },
 
     /* Linting */

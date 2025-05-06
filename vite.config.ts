@@ -13,7 +13,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      xui: path.resolve(__dirname, 'src/index.ts'),
+      lessline: path.resolve(__dirname, 'src/index.ts'),
     },
   },
 });

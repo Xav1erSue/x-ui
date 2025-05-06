@@ -1,4 +1,4 @@
-import { Flex, Input } from 'xui';
+import { Flex, Input } from 'lessline';
 
 const Demo: React.FC = () => {
   return (

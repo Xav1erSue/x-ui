@@ -8,11 +8,11 @@ hero:
   tagline: Based on Less instead of Tailwind/Windi and Preline UI.
   actions:
     - theme: brand
-      text: 快速开始
-      link: /start
+      text: Markdown Examples
+      link: /markdown-examples
     - theme: alt
-      text: 组件
-      link: /components
+      text: API Examples
+      link: /api-examples
 
 features:
   - title: Feature A

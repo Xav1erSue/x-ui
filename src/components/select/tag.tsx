@@ -16,14 +16,14 @@ const Tag: React.FC<SelectTagProps> = (props) => {
   };
 
   return (
-    <div className={`${clsPrefix}`}>
-      <div className={`${clsPrefix}__label`}>
+    <span className={`${clsPrefix}`}>
+      <span className={`${clsPrefix}__label`}>
         {option?.label ?? option?.value}
-      </div>
-      <div className={`${clsPrefix}__delete`} onClick={handleClose}>
+      </span>
+      <span className={`${clsPrefix}__delete`} onClick={handleClose}>
         <X />
-      </div>
-    </div>
+      </span>
+    </span>
   );
 };
 

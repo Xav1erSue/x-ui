@@ -9,16 +9,10 @@ import { useControllableValue } from 'ahooks';
 import cn from 'classnames';
 import { ChevronsUpDown } from 'lucide-react';
 import { omit } from 'radash';
-import {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { SelectContext } from './context';
 import { findNextOption, KeyCode } from './helper';
-import { useSelectedOptions, useSearchOptions } from './hooks';
+import { useSelectedOptions, useSearchOptions, useInput } from './hooks';
 import OptionList from './option-list';
 import Tag from './tag';
 import {
@@ -52,12 +46,16 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
 
   const [hoveredIndex, setHoveredIndex] = useState<number>(-1);
 
-  const { options, search, setSearch } = useSearchOptions({
+  const { inputRef, measureRef, inputValue, setInputValue, inputWidth } =
+    useInput();
+
+  console.log(inputWidth);
+
+  const { options } = useSearchOptions({
+    inputValue,
     dataSource,
     filterOption,
   });
-
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const { refs, floatingStyles } = useFloating({
     whileElementsMounted: autoUpdate,
@@ -81,7 +79,7 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
 
   const blur = () => {
     setVisible(false);
-    setSearch('');
+    setInputValue('');
     if (showSearch) inputRef.current?.blur();
   };
 
@@ -151,7 +149,7 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
         setValue(newValue);
       }
     }
-    setSearch('');
+    setInputValue('');
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -194,7 +192,7 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
       case KeyCode.Backspace: {
         if (
           showSearch &&
-          !search &&
+          !inputValue &&
           mode !== 'single' &&
           Array.isArray(value)
         ) {
@@ -218,30 +216,32 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
   };
 
   const renderLabel = () => {
-    if (mode === 'single' || !selectedOptions.length) return null;
-    if (mode === 'multiple') {
+    if (!selectedOptions.length) return null;
+
+    if (mode === 'single') {
+      if (showSearch && visible) return null;
+
       return (
-        <span className={`${clsPrefix}__label__text`}>
-          {selectedOptions
-            ?.map((option) => option.label ?? option.value)
-            .join('、')}
-        </span>
-      );
-    } else {
-      return (
-        <>
-          {selectedOptions?.map((option) => (
-            <Tag key={option.value} option={option} />
-          ))}
-        </>
+        <span>{selectedOptions[0]?.label ?? selectedOptions[0]?.value}</span>
       );
     }
-  };
-
-  const getInputValue = () => {
-    if (showSearch && visible) return search;
-    if (mode === 'single')
-      return selectedOptions[0]?.label ?? selectedOptions[0]?.value;
+    if (mode === 'multiple') {
+      return selectedOptions?.map((option, index) => (
+        <span
+          className={cn(`${clsPrefix}__label__selected`, {
+            [`${clsPrefix}__label__selected--last`]:
+              index === selectedOptions.length - 1,
+          })}
+          key={option.value}
+        >
+          {option.label ?? option.value}
+        </span>
+      ));
+    } else {
+      return selectedOptions?.map((option) => (
+        <Tag key={option.value} option={option} />
+      ));
+    }
   };
 
   return (
@@ -266,23 +266,36 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
         })}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
-        tabIndex={disabled ? -1 : 0}
       >
         <div className={`${clsPrefix}__label`}>
+          <span
+            hidden={!!selectedOptions.length || !!inputValue}
+            className={`${clsPrefix}__label__placeholder`}
+          >
+            {placeholder}
+          </span>
           {renderLabel()}
           <input
             ref={inputRef}
             autoComplete="off"
             className={`${clsPrefix}__label__input`}
+            style={{ width: inputWidth }}
             type="text"
             role="combobox"
             aria-expanded={visible}
-            readOnly={!showSearch}
-            value={getInputValue()}
-            tabIndex={-1}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder={!selectedOptions.length ? placeholder : undefined}
+            readOnly={!showSearch || !visible}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
           />
+          {/* 用于动态调整输入框宽度 */}
+          <span
+            ref={measureRef}
+            className={`${clsPrefix}__label__input`}
+            style={{ visibility: 'hidden', position: 'absolute' }}
+            aria-hidden
+          >
+            {inputValue}&nbsp;
+          </span>
         </div>
         <ChevronsUpDown className={`${clsPrefix}__icon`} />
       </div>

@@ -1,4 +1,4 @@
-import { Flex, OptionType, Select } from 'xui';
+import { Flex, OptionType, Select } from 'lessline';
 
 const options: OptionType[] = [
   { label: '🇸🇦 United Arab Emirates', value: 1, description: '(+971)' },
