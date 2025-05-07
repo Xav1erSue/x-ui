@@ -5,10 +5,10 @@ import { useRef, useCallback } from 'react';
  * 并确保始终能够访问到当前 DOM 元素
  */
 export const useForwardedRef = <T>(propsRef: React.ForwardedRef<T>) => {
-  const ref = useRef<T>(null);
+  const ref = useRef<T | null>(null);
 
-  const setRef = useCallback(
-    (element: T | null) => {
+  const setRef = useCallback<React.RefCallback<T>>(
+    (element) => {
       // 处理 ref callback 的情况
       if (typeof propsRef === 'function') {
         propsRef(element);
@@ -31,26 +31,32 @@ export const useForwardedRef = <T>(propsRef: React.ForwardedRef<T>) => {
  */
 export const useMergeRefs = <T>(
   refs: Array<
-    React.RefObject<T> | React.RefCallback<T> | React.ForwardedRef<T>
+    | React.MutableRefObject<T>
+    | React.RefCallback<T>
+    | React.ForwardedRef<T>
+    | null
   >,
 ) => {
-  const mergedRef = useRef<T>(null);
+  const mergedRef = useRef<T | null>(null);
 
-  const setRef = (element: T | null) => {
-    if (mergedRef.current) return;
+  const setRef = useCallback<React.RefCallback<T>>(
+    (element) => {
+      if (mergedRef.current) return;
 
-    refs.forEach((ref) => {
-      // 处理 ref callback 的情况
-      if (typeof ref === 'function') {
-        ref(element);
-      } else if (ref) {
-        ref.current = element;
-      } else {
-        console.error('ref is not a valid ref');
-      }
-    });
-    mergedRef.current = element;
-  };
+      refs.forEach((ref) => {
+        // 处理 ref callback 的情况
+        if (typeof ref === 'function') {
+          ref(element);
+        } else if (ref) {
+          ref.current = element;
+        } else {
+          console.error('ref is not a valid ref');
+        }
+      });
+      mergedRef.current = element;
+    },
+    [refs],
+  );
 
   return [mergedRef, setRef] as const;
 };

@@ -9,7 +9,7 @@ import { Flex } from '../flex';
 
 const clsPrefix = getClsPrefix('input');
 
-const Input = forwardRef<HTMLInputElement | null, InputProps>((props, ref) => {
+const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
     disabled,
     status = 'default',
@@ -61,7 +61,6 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>((props, ref) => {
       align="center"
       justify="space-between"
       gap={size}
-      tabIndex={-1}
     >
       {!!prefix && <div className={`${clsPrefix}__prefix`}>{prefix}</div>}
       <input

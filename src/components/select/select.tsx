@@ -49,8 +49,6 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
   const { inputRef, measureRef, inputValue, setInputValue, inputWidth } =
     useInput();
 
-  console.log(inputWidth);
-
   const { options } = useSearchOptions({
     inputValue,
     dataSource,
@@ -74,13 +72,13 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
 
   const focus = () => {
     setVisible(true);
-    if (showSearch) inputRef.current?.focus();
+    inputRef.current?.focus();
   };
 
   const blur = () => {
     setVisible(false);
     setInputValue('');
-    if (showSearch) inputRef.current?.blur();
+    inputRef.current?.blur();
   };
 
   useImperativeHandle(ref, () => ({
@@ -160,6 +158,7 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
     switch (e.key) {
       case KeyCode.ArrowDown:
       case KeyCode.ArrowUp: {
+        if (!visible) break;
         e.preventDefault();
         const nextIndex = findNextOption(options, hoveredIndex, e.key);
         setHoveredIndex(nextIndex);
@@ -178,14 +177,15 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
       }
 
       case KeyCode.Tab: {
-        if (visible) {
-          setVisible(false);
-        }
+        if (!visible) break;
+        setVisible(false);
         break;
       }
 
       case KeyCode.Escape: {
+        if (!visible) break;
         setVisible(false);
+        setInputValue('');
         break;
       }
 
@@ -286,6 +286,7 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
             readOnly={!showSearch || !visible}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
+            onBlur={() => blur()}
           />
           {/* 用于动态调整输入框宽度 */}
           <span

@@ -12,9 +12,9 @@ const Form = forwardRef<FormRef, FormProps>((props, ref) => {
   const { className, size, ...rest } = props;
 
   return (
-    <FormContext value={{ size }}>
+    <FormContext.Provider value={{ size }}>
       <FieldForm className={cn(clsPrefix, className)} ref={ref} {...rest} />
-    </FormContext>
+    </FormContext.Provider>
   );
 });
 
