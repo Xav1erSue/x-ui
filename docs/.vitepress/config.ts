@@ -38,7 +38,10 @@ export default defineConfig({
             text: '通用',
             base: '/components',
             collapsed: false,
-            items: [{ text: 'Button 按钮', link: '/button' }],
+            items: [
+              { text: 'Button 按钮', link: '/button' },
+              { text: 'Typography 排版', link: '/typography' },
+            ],
           },
           {
             text: '布局',

@@ -68,6 +68,7 @@
     "globals": "^16.0.0",
     "less": "^4.3.0",
     "np": "^10.2.0",
+    "postcss": "^8.5.3",
     "postcss-less": "^6.0.0",
     "stylelint": "^16.18.0",
     "stylelint-config-rational-order": "^0.1.2",

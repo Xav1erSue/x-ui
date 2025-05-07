@@ -73,6 +73,9 @@ devDependencies:
   np:
     specifier: ^10.2.0
     version: 10.2.0(@types/node@22.14.1)(typescript@5.7.3)
+  postcss:
+    specifier: ^8.5.3
+    version: 8.5.3
   postcss-less:
     specifier: ^6.0.0
     version: 6.0.0(postcss@8.5.3)

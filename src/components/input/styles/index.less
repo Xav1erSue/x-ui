@@ -1,3 +1,5 @@
+@input-font-size: 15px;
+
 .@{prefix}-input {
   border: 1px solid var(--color-fill);
   border-radius: var(--border-radius-large);
@@ -44,20 +46,14 @@
   /* ----------------------------------- 尺寸 ----------------------------------- */
   &--small {
     padding: var(--spacing-y-small) var(--spacing-x-small);
-
-    --input-font-size: var(--font-size-small);
   }
 
   &--medium {
     padding: var(--spacing-y-medium) var(--spacing-x-medium);
-
-    --input-font-size: var(--font-size-medium);
   }
 
   &--large {
     padding: var(--spacing-y-large) var(--spacing-x-large);
-
-    --input-font-size: var(--font-size-large);
   }
 
   /* ----------------------------------- 元素 ----------------------------------- */
@@ -65,10 +61,9 @@
   & > input {
     width: 100%;
     color: var(--color-text-primary);
-    font-weight: 400;
-    font-size: var(--input-font-size);
-    font-style: normal;
-    line-height: normal;
+    font-weight: 500;
+    font-size: @input-font-size;
+    letter-spacing: 0.075px;
     background-color: transparent;
   }
 
@@ -86,8 +81,8 @@
   }
 
   .lucide {
-    width: var(--input-font-size);
-    height: var(--input-font-size);
+    width: @input-font-size;
+    height: @input-font-size;
     color: var(--color-text-secondary);
   }
 
