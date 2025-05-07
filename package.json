@@ -16,7 +16,7 @@
   "module": "es/index.mjs",
   "typings": "es/index.d.ts",
   "private": false,
-  "version": "0.0.1-beta.3",
+  "version": "0.0.1-beta.4",
   "author": "Xav1erSue",
   "license": "MIT",
   "homepage": "https://lessline.xav1er.com",
