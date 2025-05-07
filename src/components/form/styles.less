@@ -16,6 +16,21 @@
   }
 }
 
+.@{prefix}-form {
+  /* ----------------------------------- 尺寸 ----------------------------------- */
+  &--small {
+    --form-font-size: var(--font-size-small);
+  }
+
+  &--medium {
+    --form-font-size: var(--font-size-medium);
+  }
+
+  &--large {
+    --form-font-size: var(--font-size-large);
+  }
+}
+
 .@{prefix}-form-item {
   margin-bottom: 20px;
 
@@ -23,14 +38,14 @@
     &__label {
       color: var(--color-text-primary);
       font-weight: 500;
-      font-size: 15px;
+      font-size: var(--form-font-size);
       letter-spacing: 0.075px;
     }
 
     &__corner-hint {
       color: var(--color-text-secondary);
       font-weight: 500;
-      font-size: 14px;
+      font-size: var(--form-font-size);
       letter-spacing: 0.07px;
     }
   }
@@ -38,7 +53,7 @@
   &__footer {
     &__item {
       color: var(--color-text-secondary);
-      font-size: 14px;
+      font-size: var(--form-font-size);
       letter-spacing: 0.07px;
 
       &.error {

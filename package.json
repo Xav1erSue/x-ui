@@ -38,7 +38,8 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "prepublish": "pnpm run build",
-    "release": "np"
+    "release": "np",
+    "clean": "rm -rf lib es"
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.8",
@@ -51,14 +52,14 @@
     "rc-field-form": "^2.7.0"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": ">= 18.0.0",
+    "react-dom": ">= 18.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
     "@types/node": "^22.14.1",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react-swc": "^3.8.0",
     "eslint": "^9.22.0",
     "eslint-plugin-import": "^2.31.0",
@@ -68,7 +69,6 @@
     "less": "^4.3.0",
     "np": "^10.2.0",
     "postcss-less": "^6.0.0",
-    "react-docgen": "^8.0.0",
     "stylelint": "^16.18.0",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^38.0.0",

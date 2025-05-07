@@ -79,7 +79,7 @@
     overflow: hidden;
     color: var(--color-text-primary);
     font-weight: 500;
-    font-size: 15px;
+    font-size: var(--select-font-size);
     line-height: 20px;
     letter-spacing: 0.075px;
 
@@ -103,7 +103,7 @@
       min-width: 4px;
       color: var(--color-text-primary);
       font-weight: 500;
-      font-size: 15px;
+      font-size: var(--select-font-size);
       letter-spacing: 0.075px;
     }
 
@@ -129,7 +129,7 @@
 .@{prefix}-select__option-list {
   padding: 8px;
   font-weight: 500;
-  font-size: 14px;
+  font-size: var(--font-size-medium);
   line-height: 20px;
   letter-spacing: 0.07px;
   background: var(--color-bg);
@@ -191,7 +191,7 @@
   &__label {
     color: var(--color-text-secondary);
     font-weight: 500;
-    font-size: 14px;
+    font-size: var(--select-font-size);
     letter-spacing: 0.07px;
 
     @oneTextOverflow();
