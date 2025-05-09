@@ -11,3 +11,9 @@
 ## 状态
 
 <demo react="select/demo/theme.tsx" />
+
+## API
+
+### Select
+
+::props{component="select/index.ts"}

@@ -20,7 +20,15 @@ export type TypographyWeight = 'regular' | 'medium' | 'semibold' | 'bold';
 export interface BaseTypographyProps<C extends keyof JSX.IntrinsicElements>
   extends React.HTMLAttributes<HTMLElement> {
   component?: C;
+  /**
+   * 字体大小
+   * @default 'base'
+   */
   size?: TypographySize;
+  /**
+   * 字体权重
+   * @default 'regular'
+   */
   weight?: TypographyWeight;
 }
 

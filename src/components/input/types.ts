@@ -1,4 +1,3 @@
-import { LucideProps } from 'lucide-react';
 import { OmitWithTypes } from '../../types/utils';
 import { FormItemBaseProperty } from '../form/types';
 
@@ -21,7 +20,7 @@ export interface InputProps
   /**
    * 前缀
    */
-  prefix?: React.ReactElement<LucideProps>;
+  prefix?: React.ReactNode;
   /**
    * 后缀
    */

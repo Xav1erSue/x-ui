@@ -10,7 +10,7 @@ module.exports = {
   rules: {
     'import-notation': null,
   },
-  ignoreFiles: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
+  ignoreFiles: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx', 'docs/**/*'],
   overrides: [
     {
       files: ['**/*.less'],

@@ -11,3 +11,7 @@
 ## 块级元素
 
 <demo react="button/demo/block.tsx" />
+
+## API
+
+::props{component="button/index.ts"}

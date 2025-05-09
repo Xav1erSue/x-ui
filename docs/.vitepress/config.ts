@@ -1,6 +1,7 @@
 import path from 'path';
 import { defineConfig } from 'vitepress';
 import { vitepressDemoPlugin } from 'vitepress-demo-plugin';
+import { propsTablePlugin } from './plugins/props-table';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -66,11 +67,13 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/Xav1erSue/Lessline' },
     ],
   },
+  lastUpdated: true,
   markdown: {
     config: (md) => {
       md.use(vitepressDemoPlugin, {
         demoDir: path.resolve(__dirname, '../../src/components'),
       });
+      md.use(propsTablePlugin);
     },
   },
   vite: {

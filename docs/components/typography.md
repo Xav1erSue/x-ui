@@ -11,3 +11,17 @@
 ## Typography.Title
 
 <demo react="typography/demo/title.tsx" />
+
+## API
+
+### Typography.Text
+
+::props{component="typography/text.tsx"}
+
+### Typography.Paragraph
+
+::props{component="typography/paragraph.tsx"}
+
+### Typography.Title
+
+::props{component="typography/title.tsx"}
