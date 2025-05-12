@@ -5,10 +5,10 @@ import { getClsPrefix } from '../../utils';
 
 const clsPrefix = getClsPrefix('typography');
 
-const Typography = forwardRef<
-  HTMLElement,
-  BaseTypographyProps<keyof JSX.IntrinsicElements>
->((props, ref) => {
+const Typography = <T extends HTMLElement>(
+  props: BaseTypographyProps<keyof JSX.IntrinsicElements, T>,
+  ref: React.Ref<T>,
+) => {
   const {
     size = 'base',
     weight = 'regular',
@@ -29,6 +29,12 @@ const Typography = forwardRef<
       {children}
     </Component>
   );
-});
+};
 
-export default Typography;
+export default forwardRef(Typography) as <
+  T extends HTMLElement,
+  P extends BaseTypographyProps<keyof JSX.IntrinsicElements, T>,
+>(
+  props: P,
+  ref: React.Ref<T>,
+) => ReturnType<typeof Typography>;

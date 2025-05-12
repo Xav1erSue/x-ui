@@ -38,14 +38,18 @@ export const parseComponentProps = (componentPath: string) => {
   // 转换为我们需要的格式
   return Object.keys(componentProps).map((propName) => {
     const prop = componentProps[propName];
+    const displayNameMatch = prop.description?.match(/@type\s*"([^"]+)"/);
+
     return {
       name: propName,
-      type: prop.type.value
-        ? prop.type.value.map((item: any) => item.value).join(' | ')
-        : prop.type.name,
+      type:
+        displayNameMatch?.[1] ??
+        (prop.type.value
+          ? prop.type.value.map((item: any) => item.value).join(' | ')
+          : prop.type.name),
       defaultValue: prop.defaultValue?.value,
       required: prop.required,
-      description: prop.description,
+      description: prop.description?.replace(/@type\s*"[^"]+"\s*/g, '').trim(),
     };
   });
 };

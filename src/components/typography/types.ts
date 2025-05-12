@@ -17,8 +17,14 @@ export type TypographySize =
 
 export type TypographyWeight = 'regular' | 'medium' | 'semibold' | 'bold';
 
-export interface BaseTypographyProps<C extends keyof JSX.IntrinsicElements>
-  extends React.HTMLAttributes<HTMLElement> {
+export interface BaseTypographyProps<
+  C extends keyof JSX.IntrinsicElements,
+  T extends HTMLElement,
+> extends React.HTMLAttributes<T> {
+  /**
+   * 自定义元素，如 `div`、`span` 等
+   * @type "keyof JSX.IntrinsicElements"
+   */
   component?: C;
   /**
    * 字体大小
@@ -32,13 +38,38 @@ export interface BaseTypographyProps<C extends keyof JSX.IntrinsicElements>
   weight?: TypographyWeight;
 }
 
-export type ParagraphProps = OmitWithTypes<
-  BaseTypographyProps<'p'>,
-  'component'
->;
+export interface ParagraphProps
+  extends OmitWithTypes<
+      BaseTypographyProps<'p', HTMLParagraphElement>,
+      'component'
+    >,
+    React.HTMLAttributes<HTMLParagraphElement> {}
 
-export type TextProps = OmitWithTypes<BaseTypographyProps<'span'>, 'component'>;
+export interface TextProps
+  extends OmitWithTypes<
+      BaseTypographyProps<'span', HTMLSpanElement>,
+      'component'
+    >,
+    React.HTMLAttributes<HTMLSpanElement> {}
 
-export interface TitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
+export interface TitleProps
+  extends OmitWithTypes<
+      BaseTypographyProps<'h1', HTMLHeadingElement>,
+      'component'
+    >,
+    React.HTMLAttributes<HTMLHeadingElement> {
   level?: 1 | 2 | 3 | 4 | 5;
+}
+
+export interface LinkProps
+  extends OmitWithTypes<
+      BaseTypographyProps<'a', HTMLAnchorElement>,
+      'component'
+    >,
+    React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  /**
+   * 是否禁用
+   * @default false
+   */
+  disabled?: boolean;
 }
