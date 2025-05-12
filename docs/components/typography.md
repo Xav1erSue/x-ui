@@ -1,14 +1,16 @@
 # Typography 文本
 
-## Typography.Text
+## 代码演示
+
+### Typography.Text
 
 <demo react="typography/demo/text.tsx" />
 
-## Typography.Paragraph
+### Typography.Paragraph
 
 <demo react="typography/demo/paragraph.tsx" />
 
-## Typography.Title
+### Typography.Title
 
 <demo react="typography/demo/title.tsx" />
 

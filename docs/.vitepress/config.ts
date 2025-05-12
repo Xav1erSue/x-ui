@@ -60,8 +60,17 @@ export default defineConfig({
               { text: 'Select 选择器', link: '/select' },
             ],
           },
+          {
+            text: '数据展示',
+            base: '/components',
+            collapsed: false,
+            items: [{ text: 'Timeline 时间轴', link: '/timeline' }],
+          },
         ],
       },
+    },
+    outline: {
+      level: 'deep',
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/Xav1erSue/Lessline' },

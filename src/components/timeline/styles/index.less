@@ -1,0 +1,73 @@
+.@{prefix}-timeline {
+  &__group-name {
+    margin: 8px 0;
+    color: var(--color-text-secondary);
+  }
+
+  &__item {
+    display: flex;
+    gap: 12px;
+
+    &__time {
+      flex-shrink: 0;
+      padding-top: 4px;
+      color: var(--color-text-secondary);
+    }
+
+    &__left {
+      position: relative;
+      flex-shrink: 0;
+      width: 28px;
+    }
+
+    &__right {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 4px;
+      padding-top: 2px;
+      padding-bottom: 32px;
+    }
+
+    &__dot-container {
+      display: flex;
+      flex-basis: 28px;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      overflow: hidden;
+      font-size: 14px;
+
+      &--custom {
+        border: 1px solid var(--color-fill);
+        border-radius: 50%;
+      }
+    }
+
+    &__dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--color-text-secondary);
+      border-radius: 50%;
+    }
+
+    &__line {
+      position: absolute;
+      top: 28px;
+      bottom: 0;
+      left: calc(50% - 0.5px);
+      width: 1px;
+      background-color: var(--color-text-secondary);
+    }
+
+    &__title {
+      color: var(--color-text-primary);
+      line-height: 1.5;
+    }
+
+    &__content {
+      color: var(--color-text-secondary);
+    }
+  }
+}

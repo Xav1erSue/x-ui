@@ -1,14 +1,16 @@
 # Select 选择器
 
-## 基本使用
+## 代码演示
+
+### 基本使用
 
 <demo react="select/demo/base.tsx" />
 
-## 尺寸
+### 尺寸
 
 <demo react="select/demo/size.tsx" />
 
-## 状态
+### 主题
 
 <demo react="select/demo/theme.tsx" />
 

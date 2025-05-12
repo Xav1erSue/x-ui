@@ -1,6 +1,10 @@
 # Form 表单
 
-## 基本使用
+> 基于 [rc-field-form](https://github.com/react-component/field-form) 实现。
+
+## 代码演示
+
+### 基本使用
 
 <demo react="form/demo/base.tsx" />
 

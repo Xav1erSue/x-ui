@@ -10,13 +10,30 @@ export interface TimelineItem {
   /**
    * 内容
    */
-  children?: React.ReactNode;
+  content?: React.ReactNode;
   /**
-   * 扩展信息
+   * 时间
    */
-  extra?: React.ReactNode;
+  time?: string;
+  /**
+   * 唯一标识
+   */
+  key: React.Key;
 }
 
-export interface TimelineProps extends React.HTMLAttributes<HTMLDivElement> {
-  items: TimelineItem[];
+export interface TimelineProps<T extends TimelineItem>
+  extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * 时间轴数据
+   */
+  items?: T[];
+  /**
+   * 某些场景下需要对连续的数据进行分组，可以传入分组函数进行分组，返回值作为分组的标题进行展示
+   */
+  groupBy?: (item: T) => string;
+  /**
+   * 是否显示时间
+   * @default false
+   */
+  showTime?: boolean;
 }
