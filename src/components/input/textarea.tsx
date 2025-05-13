@@ -68,7 +68,13 @@ const InputTextArea = forwardRef<HTMLTextAreaElement, InputTextAreaProps>(
           [`${clsPrefix}--status-${status}`]: status,
           [`${clsPrefix}--focused`]: focused,
         })}
-        onClick={() => textareaRef.current?.focus()}
+        onMouseDown={(e) => {
+          if (focused) {
+            e.preventDefault();
+          } else {
+            textareaRef.current?.focus();
+          }
+        }}
         style={style}
         direction="vertical"
       >

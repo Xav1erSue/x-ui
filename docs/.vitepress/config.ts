@@ -58,6 +58,7 @@ export default defineConfig({
               { text: 'Form 表单', link: '/form' },
               { text: 'Input 输入框', link: '/input' },
               { text: 'Select 选择器', link: '/select' },
+              { text: 'Stepper 步进器', link: '/stepper' },
             ],
           },
           {

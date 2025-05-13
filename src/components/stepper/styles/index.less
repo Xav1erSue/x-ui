@@ -1,0 +1,124 @@
+@stepper-font-size: 15px;
+@stepper-handler-size: 24px;
+
+.@{prefix}-stepper {
+  border: 1px solid var(--color-fill);
+  border-radius: var(--border-radius-large);
+  transition: all 0.05s ease-in-out;
+
+  /* ----------------------------------- 状态 ----------------------------------- */
+  &--status-default {
+    --stepper-color-primary: var(--color-primary);
+  }
+
+  &--status-success {
+    --stepper-color-primary: var(--color-status-success);
+
+    border-color: var(--color-status-success);
+  }
+
+  &--status-error {
+    --stepper-color-primary: var(--color-status-error);
+
+    border-color: var(--color-status-error);
+  }
+
+  /* ----------------------------------- 伪类 ----------------------------------- */
+  &:hover:is(&--disabled) {
+    cursor: not-allowed;
+  }
+
+  &:focus:not(&--disabled),
+  &:focus-within:not(&--disabled) {
+    border-color: var(--stepper-color-primary);
+    box-shadow: 0 0 0 4px
+      color-mix(in srgb, var(--stepper-color-primary) 25%, white 25%);
+  }
+
+  &--disabled {
+    opacity: 0.6;
+  }
+
+  /* ----------------------------------- 尺寸 ----------------------------------- */
+  &--small {
+    padding: var(--spacing-y-small) var(--spacing-x-small);
+  }
+
+  &--medium {
+    padding: var(--spacing-y-medium) var(--spacing-x-medium);
+  }
+
+  &--large {
+    padding: var(--spacing-y-large) var(--spacing-x-large);
+  }
+
+  /* ----------------------------------- 元素 ----------------------------------- */
+
+  &__prefix,
+  &__suffix {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  & > input {
+    width: 100%;
+    color: var(--color-text-primary);
+    font-weight: 500;
+    font-size: @stepper-font-size;
+    letter-spacing: 0.075px;
+    // 隐藏默认步进箭头
+    appearance: none;
+    // stylelint-disable
+    -moz-appearance: textfield;
+  }
+
+  & > input::placeholder {
+    color: var(--color-text-secondary);
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    & > input {
+      cursor: not-allowed;
+    }
+  }
+
+  .lucide {
+    width: @stepper-font-size;
+    height: @stepper-font-size;
+    color: var(--color-text-secondary);
+  }
+}
+
+.@{prefix}-stepper__handler {
+  display: flex;
+  gap: 6px;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: @stepper-handler-size;
+    height: @stepper-handler-size;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid var(--color-fill);
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.05);
+
+    &--rounded {
+      border-radius: 50%;
+    }
+
+    &--disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    &:not(&--disabled):hover {
+      background-color: var(--color-bg-secondary);
+    }
+  }
+}

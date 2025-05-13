@@ -49,7 +49,7 @@ export type InputPasswordProps = OmitWithTypes<InputProps, 'type' | 'suffix'>;
 export interface InputTextAreaProps
   extends OmitWithTypes<
       React.InputHTMLAttributes<HTMLTextAreaElement>,
-      'size' | 'value' | 'defaultValue' | 'onChange' | 'prefix' | 'disabled'
+      'size' | 'value' | 'defaultValue' | 'onChange'
     >,
     FormItemBaseProperty {
   /**
