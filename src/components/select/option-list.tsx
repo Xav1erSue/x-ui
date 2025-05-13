@@ -22,6 +22,7 @@ const OptionList = forwardRef<HTMLDivElement, OptionListProps>((props, ref) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.1 }}
+          onMouseDown={(e) => e.preventDefault()}
           {...rest}
         >
           {options.length ? (

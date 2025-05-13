@@ -4,27 +4,27 @@
 
 ### 基本使用
 
-<demo react="input/demo/base.tsx" />
+<demo react="components/input/demo/base.tsx" />
 
 ### 状态
 
-<demo react="input/demo/status.tsx" />
+<demo react="components/input/demo/status.tsx" />
 
 ### 尺寸
 
-<demo react="input/demo/size.tsx" />
+<demo react="components/input/demo/size.tsx" />
 
 ### 前缀和后缀
 
-<demo react="input/demo/prefix.tsx" />
+<demo react="components/input/demo/prefix.tsx" />
 
 ### 密码输入框
 
-<demo react="input/demo/password.tsx" />
+<demo react="components/input/demo/password.tsx" />
 
 ### 文本域
 
-<demo react="input/demo/textarea.tsx" />
+<demo react="components/input/demo/textarea.tsx" />
 
 ## API
 

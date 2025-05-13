@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 export const useClickAway = <T extends HTMLElement>(
   handler: (event: MouseEvent | UIEvent | Event | TouchEvent) => void,
-  refs: React.MutableRefObject<T>[],
+  refs: React.MutableRefObject<T | null>[],
   eventName: Array<keyof DocumentEventMap> = ['click'],
 ) => {
   useEffect(() => {

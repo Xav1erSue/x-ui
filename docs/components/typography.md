@@ -8,23 +8,23 @@
 Typography 组件是所有文本类组件的基础组件，内部仅封装了 `size` 和 `weight` 两个属性，并且支持传入 `component` 属性来指定自定义渲染元素。
 :::
 
-<demo react="typography/demo/typography.tsx" />
+<demo react="components/typography/demo/typography.tsx" />
 
 ### Typography.Text
 
-<demo react="typography/demo/text.tsx" />
+<demo react="components/typography/demo/text.tsx" />
 
 ### Typography.Paragraph
 
-<demo react="typography/demo/paragraph.tsx" />
+<demo react="components/typography/demo/paragraph.tsx" />
 
 ### Typography.Title
 
-<demo react="typography/demo/title.tsx" />
+<demo react="components/typography/demo/title.tsx" />
 
 ### Typography.Link
 
-<demo react="typography/demo/link.tsx" />
+<demo react="components/typography/demo/link.tsx" />
 
 ## API
 

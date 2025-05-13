@@ -4,17 +4,17 @@
 
 ### 基本使用
 
-<demo react="button/demo/base.tsx" />
+<demo react="components/button/demo/base.tsx" />
 
 ### 可选尺寸
 
-<demo react="button/demo/size.tsx" />
+<demo react="components/button/demo/size.tsx" />
 
 ### 块级元素
 
 按钮默认是行内元素，如果需要块级元素，可以设置 `block` 属性。
 
-<demo react="button/demo/block.tsx" />
+<demo react="components/button/demo/block.tsx" />
 
 ## API
 

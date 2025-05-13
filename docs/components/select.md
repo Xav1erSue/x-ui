@@ -4,15 +4,15 @@
 
 ### 基本使用
 
-<demo react="select/demo/base.tsx" />
+<demo react="components/select/demo/base.tsx" />
 
 ### 尺寸
 
-<demo react="select/demo/size.tsx" />
+<demo react="components/select/demo/size.tsx" />
 
 ### 主题
 
-<demo react="select/demo/theme.tsx" />
+<demo react="components/select/demo/theme.tsx" />
 
 ## API
 

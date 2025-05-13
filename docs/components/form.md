@@ -6,7 +6,7 @@
 
 ### 基本使用
 
-<demo react="form/demo/base.tsx" />
+<demo react="components/form/demo/base.tsx" />
 
 ## API
 

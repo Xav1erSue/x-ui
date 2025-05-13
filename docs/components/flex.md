@@ -4,19 +4,19 @@
 
 ### 基本使用
 
-<demo react="flex/demo/base.tsx" />
+<demo react="components/flex/demo/base.tsx" />
 
 ### 垂直布局
 
-<demo react="flex/demo/vertical.tsx" />
+<demo react="components/flex/demo/vertical.tsx" />
 
 ### 两端对齐
 
-<demo react="flex/demo/space-between.tsx" />
+<demo react="components/flex/demo/space-between.tsx" />
 
 ### 间距
 
-<demo react="flex/demo/gap.tsx" />
+<demo react="components/flex/demo/gap.tsx" />
 
 ## API
 

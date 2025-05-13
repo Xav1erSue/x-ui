@@ -5,19 +5,19 @@
 
 ### 基本使用
 
-<demo react="stepper/demo/base.tsx" />
+<demo react="components/stepper/demo/base.tsx" />
 
 ### 状态
 
-<demo react="stepper/demo/status.tsx" />
+<demo react="components/stepper/demo/status.tsx" />
 
 ### 尺寸
 
-<demo react="stepper/demo/size.tsx" />
+<demo react="components/stepper/demo/size.tsx" />
 
 ### 前缀和后缀
 
-<demo react="stepper/demo/prefix.tsx" />
+<demo react="components/stepper/demo/prefix.tsx" />
 
 ## API
 

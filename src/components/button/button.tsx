@@ -1,11 +1,12 @@
 import cn from 'classnames';
+import { forwardRef } from 'react';
 import { ButtonProps } from './types';
 import { getClsPrefix } from '../../utils';
 import { Loading } from '../loading';
 
 const prefix = getClsPrefix('button');
 
-const Button: React.FC<ButtonProps> = (props) => {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const {
     type = 'default',
     size = 'medium',
@@ -21,6 +22,7 @@ const Button: React.FC<ButtonProps> = (props) => {
 
   return (
     <button
+      ref={ref}
       className={cn(prefix, className, {
         [`${prefix}--${type}`]: type,
         [`${prefix}--disabled`]: disabled || loading,
@@ -37,7 +39,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       <span className={`${prefix}__label`}>{children}</span>
     </button>
   );
-};
+});
 
 Button.displayName = 'Button';
 

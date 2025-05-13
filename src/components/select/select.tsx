@@ -9,7 +9,7 @@ import { useControllableValue } from 'ahooks';
 import cn from 'classnames';
 import { ChevronsUpDown } from 'lucide-react';
 import { omit } from 'radash';
-import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import { SelectContext } from './context';
 import { findNextOption, KeyCode } from './helper';
 import { useSelectedOptions, useSearchOptions, useInput } from './hooks';
@@ -20,15 +20,14 @@ import {
   RawValueType,
   SelectContextProps,
   SelectProps,
-  SelectRef,
   ValueType,
 } from './types';
-import { useClickAway } from '../../hooks';
+import { useForwardedRef } from '../../hooks';
 import { getClsPrefix } from '../../utils';
 
 const clsPrefix = getClsPrefix('select');
 
-const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
+const Select = forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
   const {
     mode = 'single',
     size: propsSize = 'medium',
@@ -41,13 +40,14 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
     showSearch = false,
     filterOption = false,
     onKeyDown: propsOnKeyDown,
+    onFocus: propsOnFocus,
+    onBlur: propsOnBlur,
     ...rest
   } = props;
 
-  const [hoveredIndex, setHoveredIndex] = useState<number>(-1);
+  const [inputRef, setInputRef] = useForwardedRef(ref);
 
-  const { inputRef, measureRef, inputValue, setInputValue, inputWidth } =
-    useInput();
+  const { measureRef, inputValue, setInputValue, inputWidth } = useInput();
 
   const { options } = useSearchOptions({
     inputValue,
@@ -70,27 +70,23 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
     ],
   });
 
-  const focus = () => {
+  const [focused, setFocused] = useState(false);
+
+  const onFocus = (e: React.FocusEvent<HTMLElement>) => {
+    setFocused(true);
     setVisible(true);
-    inputRef.current?.focus();
+    propsOnFocus?.(e);
   };
 
-  const blur = () => {
+  const onBlur = (e: React.FocusEvent<HTMLElement>) => {
+    setFocused(false);
     setVisible(false);
     setInputValue('');
-    inputRef.current?.blur();
+    propsOnBlur?.(e);
   };
 
-  useImperativeHandle(ref, () => ({
-    focus,
-    blur,
-  }));
-
-  useClickAway(() => blur(), [refs.reference, refs.floating] as Array<
-    React.MutableRefObject<HTMLElement>
-  >);
-
   const [value, setValue] = useControllableValue<ValueType>(props);
+
   const [visible, setVisible] = useControllableValue<boolean>(props, {
     valuePropName: 'visible',
     defaultValuePropName: 'defaultVisible',
@@ -104,6 +100,8 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
     value,
     defaultOptions,
   });
+
+  const [hoveredIndex, setHoveredIndex] = useState<number>(-1);
 
   useEffect(() => {
     setHoveredIndex(-1);
@@ -167,11 +165,10 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
 
       case KeyCode.Enter: {
         if (visible) {
-          handleChange(options[hoveredIndex]);
-
-          if (mode === 'single') setVisible(false);
+          const hoveredOption = options[hoveredIndex];
+          if (hoveredOption) handleChange(hoveredOption);
         } else {
-          focus();
+          setVisible(true);
         }
         break;
       }
@@ -204,8 +201,10 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
   };
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (disabled) return;
     e.stopPropagation();
-    if (!disabled) focus();
+    if (!focused) inputRef.current?.focus();
+    else setVisible((prev) => !prev);
   };
 
   const contextValue: SelectContextProps = {
@@ -266,6 +265,7 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
         })}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
+        onMouseDown={(e) => e.preventDefault()}
       >
         <div className={`${clsPrefix}__label`}>
           <span
@@ -276,7 +276,7 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
           </span>
           {renderLabel()}
           <input
-            ref={inputRef}
+            ref={setInputRef}
             autoComplete="off"
             className={`${clsPrefix}__label__input`}
             style={{ width: inputWidth }}
@@ -286,7 +286,8 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
             readOnly={!showSearch || !visible}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            onBlur={() => blur()}
+            onFocus={onFocus}
+            onBlur={onBlur}
           />
           {/* 用于动态调整输入框宽度 */}
           <span

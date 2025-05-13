@@ -33,7 +33,7 @@ export type ValueType =
 
 export interface SelectProps
   extends OmitWithTypes<
-    React.InputHTMLAttributes<HTMLDivElement>,
+    React.InputHTMLAttributes<HTMLElement>,
     'value' | 'defaultValue' | 'onChange' | 'size'
   > {
   /**
@@ -115,11 +115,6 @@ export interface SelectProps
    * @group Function
    */
   onVisibleChange?: (visible: boolean) => void;
-}
-
-export interface SelectRef {
-  focus: () => void;
-  blur: () => void;
 }
 
 export interface SelectContextProps {

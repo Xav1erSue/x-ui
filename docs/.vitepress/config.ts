@@ -19,11 +19,16 @@ export default defineConfig({
   description: '一个现代的 UI 组件库',
   themeConfig: {
     nav: [
-      { text: 'Home', link: '/' },
+      { text: '首页', link: '/' },
       {
-        text: 'Components',
+        text: '组件',
         link: 'components',
         activeMatch: '/components/',
+      },
+      {
+        text: 'Hooks',
+        link: 'hooks',
+        activeMatch: '/hooks/',
       },
     ],
     sidebar: {
@@ -69,6 +74,14 @@ export default defineConfig({
           },
         ],
       },
+      '/hooks/': {
+        base: '/hooks/',
+        items: [
+          { text: 'Hooks 总览', link: '/' },
+          { text: 'useForwardedRef', link: '/use-forwarded-ref' },
+          { text: 'useClickAway', link: '/use-click-away' },
+        ],
+      },
     },
     outline: {
       level: 'deep',
@@ -81,7 +94,7 @@ export default defineConfig({
   markdown: {
     config: (md) => {
       md.use(vitepressDemoPlugin, {
-        demoDir: path.resolve(__dirname, '../../src/components'),
+        demoDir: path.resolve(__dirname, '../../src/'),
       });
       md.use(propsTablePlugin);
     },
