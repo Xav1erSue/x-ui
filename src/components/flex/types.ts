@@ -18,7 +18,7 @@ export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
   align?: CSSProperties['alignItems'];
   /**
    * 间距
-   * @default medium
+   * @default 'medium'
    */
   gap?: 'small' | 'medium' | 'large' | number;
   /**

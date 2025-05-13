@@ -12,7 +12,7 @@
 
 ### 自定义节点图标
 
-<demo react="components/timeline/demo/dot.tsx" />
+<demo react="components/timeline/demo/icon.tsx" />
 
 ### 分组
 

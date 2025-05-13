@@ -48,12 +48,8 @@ const Timeline = <T extends TimelineItem>(
               ) : null}
               {/* 时间轴 */}
               <div className={cn(`${clsPrefix}__item__left`)}>
-                <div
-                  className={cn(`${clsPrefix}__item__dot-container`, {
-                    [`${clsPrefix}__item__dot-container--custom`]: !!item.dot,
-                  })}
-                >
-                  {item.dot || (
+                <div className={cn(`${clsPrefix}__item__dot-container`)}>
+                  {item.icon || (
                     <div className={cn(`${clsPrefix}__item__dot`)} />
                   )}
                 </div>
@@ -70,7 +66,7 @@ const Timeline = <T extends TimelineItem>(
                 </Typography>
                 <Typography
                   component="div"
-                  weight="medium"
+                  weight="regular"
                   className={cn(`${clsPrefix}__item__content`)}
                 >
                   {item.content}

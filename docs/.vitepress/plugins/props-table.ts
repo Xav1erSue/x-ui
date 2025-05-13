@@ -49,7 +49,7 @@ export function propsTablePlugin(md: MarkdownIt) {
       // 创建 HTML token
       const token = state.push('html_block', '', 0);
       token.content = `
-        <table>
+        <table class="props-table">
           <thead>
             <tr>
               <th style="text-align: center">属性名</th>

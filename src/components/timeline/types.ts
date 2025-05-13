@@ -1,8 +1,8 @@
 export interface TimelineItem {
   /**
-   * 圆点
+   * 图标
    */
-  dot?: React.ReactNode;
+  icon?: React.ReactNode;
   /**
    * 标题
    */
@@ -25,10 +25,12 @@ export interface TimelineProps<T extends TimelineItem>
   extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * 时间轴数据
+   * @type TimelineItem[]
    */
   items?: T[];
   /**
    * 某些场景下需要对连续的数据进行分组，可以传入分组函数进行分组，返回值作为分组的标题进行展示
+   * @type (item: TimelineItem) => string
    */
   groupBy?: (item: T) => string;
   /**
