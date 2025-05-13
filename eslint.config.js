@@ -6,7 +6,7 @@ import importPlugin from 'eslint-plugin-import';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
-  { ignores: ['dist', 'docs/.vitepress/cache', 'docs/.vitepress/dist'] },
+  { ignores: ['lib', 'es', 'docs/.vitepress/cache', 'docs/.vitepress/dist'] },
   {
     extends: [
       js.configs.recommended,

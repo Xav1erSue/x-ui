@@ -1,6 +1,7 @@
 import { useControllableValue } from 'ahooks';
 import cn from 'classnames';
 import { X } from 'lucide-react';
+import { omit } from 'radash';
 import { forwardRef, useRef, useState } from 'react';
 import { InputProps } from './types';
 import { useForwardedRef } from '../../hooks';
@@ -60,11 +61,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
       style={style}
       align="center"
       justify="space-between"
-      gap={size}
+      gap={12}
     >
       {!!prefix && <div className={`${clsPrefix}__prefix`}>{prefix}</div>}
       <input
-        {...rest}
+        {...omit(rest, ['value', 'defaultValue', 'onChange'])}
         ref={setInputRef}
         disabled={disabled}
         value={value}

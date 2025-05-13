@@ -6,6 +6,18 @@
 
 <demo react="flex/demo/base.tsx" />
 
+### 垂直布局
+
+<demo react="flex/demo/vertical.tsx" />
+
+### 两端对齐
+
+<demo react="flex/demo/space-between.tsx" />
+
+### 间距
+
+<demo react="flex/demo/gap.tsx" />
+
 ## API
 
 ::props{component="flex/index.ts"}

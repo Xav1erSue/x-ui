@@ -23,12 +23,8 @@ const items: TimelineItem[] = [
   },
 ];
 
-const Base: React.FC = () => {
-  return (
-    <section>
-      <Timeline items={items} />
-    </section>
-  );
+const Demo: React.FC = () => {
+  return <Timeline items={items} />;
 };
 
-export default Base;
+export default Demo;

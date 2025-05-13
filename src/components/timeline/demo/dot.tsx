@@ -53,12 +53,8 @@ const items: TimelineItem[] = [
   },
 ];
 
-const Dot: React.FC = () => {
-  return (
-    <section>
-      <Timeline items={items} showTime />
-    </section>
-  );
+const Demo: React.FC = () => {
+  return <Timeline items={items} showTime />;
 };
 
-export default Dot;
+export default Demo;

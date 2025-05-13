@@ -31,12 +31,8 @@ const items: MyTimelineItem[] = [
   },
 ];
 
-const Group: React.FC = () => {
-  return (
-    <section>
-      <Timeline items={items} groupBy={(item) => item.date} />
-    </section>
-  );
+const Demo: React.FC = () => {
+  return <Timeline items={items} groupBy={(item) => item.date} />;
 };
 
-export default Group;
+export default Demo;

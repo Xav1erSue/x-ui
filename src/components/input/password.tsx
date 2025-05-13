@@ -9,11 +9,12 @@ const clsPrefix = getClsPrefix('input');
 
 const InputPassword = forwardRef<HTMLInputElement | null, InputPasswordProps>(
   (props, ref) => {
+    const { ...rest } = props;
     const [show, { toggle }] = useToggle();
 
     const renderIcon = () => {
       const iconProps: LucideProps = {
-        className: `${clsPrefix}__password-toggle`,
+        className: `${clsPrefix}__toggle`,
         onClick: toggle,
       };
 
@@ -22,7 +23,7 @@ const InputPassword = forwardRef<HTMLInputElement | null, InputPasswordProps>(
 
     return (
       <Input
-        {...props}
+        {...rest}
         ref={ref}
         type={show ? 'text' : 'password'}
         suffix={renderIcon()}
