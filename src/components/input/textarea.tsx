@@ -37,11 +37,8 @@ const InputTextArea = forwardRef<HTMLTextAreaElement, InputTextAreaProps>(
     useLayoutEffect(() => {
       const textarea = textareaRef.current;
 
-      if (!textarea) return;
-
-      textarea.style.height = 'auto';
-
-      if (autoHeight) {
+      if (autoHeight && textarea) {
+        textarea.style.height = '';
         textarea.style.height = `${textarea.scrollHeight}px`;
       }
     }, [autoHeight, value, textareaRef]);
@@ -69,7 +66,12 @@ const InputTextArea = forwardRef<HTMLTextAreaElement, InputTextAreaProps>(
           [`${clsPrefix}--focused`]: focused,
         })}
         onMouseDown={(e) => {
-          if (focused) {
+          console.log(e);
+
+          if (
+            document.activeElement === textareaRef.current &&
+            e.target !== textareaRef.current
+          ) {
             e.preventDefault();
           } else {
             textareaRef.current?.focus();

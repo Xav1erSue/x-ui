@@ -1,6 +1,6 @@
 import { HTMLMotionProps } from 'motion/react';
 import { OmitWithTypes } from '../../types/utils';
-import { ValidateStatus } from '../form/types';
+import { FormItemBaseProperty } from '../form/types';
 
 export type RawValueType = string | number;
 
@@ -33,9 +33,10 @@ export type ValueType =
 
 export interface SelectProps
   extends OmitWithTypes<
-    React.InputHTMLAttributes<HTMLElement>,
-    'value' | 'defaultValue' | 'onChange' | 'size'
-  > {
+      React.InputHTMLAttributes<HTMLElement>,
+      'value' | 'defaultValue' | 'onChange' | 'size'
+    >,
+    FormItemBaseProperty {
   /**
    * 选择模式：单选、多选、标签
    * @default "single"
@@ -59,16 +60,6 @@ export interface SelectProps
    * @default false
    */
   loading?: boolean;
-  /**
-   * 状态
-   * @default "default"
-   */
-  status?: ValidateStatus;
-  /**
-   * 尺寸
-   * @default "medium"
-   */
-  size?: 'small' | 'medium' | 'large';
   /**
    * 是否将选项的 label 包装在 value 中
    * @default false

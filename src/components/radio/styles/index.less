@@ -1,0 +1,62 @@
+.@{prefix}-radio {
+  width: fit-content;
+
+  /* ----------------------------------- 状态 ----------------------------------- */
+  &--status-default {
+    --radio-color-primary: var(--color-primary);
+  }
+
+  &--status-success {
+    --radio-color-primary: var(--color-status-success);
+  }
+
+  &--status-error {
+    --radio-color-primary: var(--color-status-error);
+  }
+
+  /* ----------------------------------- 元素 ----------------------------------- */
+  &__input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__indicator {
+    box-sizing: border-box;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--color-fill);
+    border-radius: 50%;
+    transition: all 0.05s ease-in-out;
+  }
+
+  &__label {
+    color: var(--color-text-primary);
+  }
+
+  /* ----------------------------------- 伪类 ----------------------------------- */
+  &:hover:not(&--disabled) &__indicator {
+    border-color: var(--radio-color-primary);
+    box-shadow: 0 0 0 4px
+      color-mix(in srgb, var(--radio-color-primary) 25%, white 25%);
+    cursor: pointer;
+  }
+
+  &:hover:not(&--disabled) &__label {
+    cursor: pointer;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &--disabled &__label {
+    cursor: not-allowed;
+  }
+
+  &--checked &__indicator {
+    border-color: var(--radio-color-primary);
+    border-width: 4.5px;
+  }
+}

@@ -42,6 +42,8 @@ const Select = forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
     onKeyDown: propsOnKeyDown,
     onFocus: propsOnFocus,
     onBlur: propsOnBlur,
+    className,
+    style,
     ...rest
   } = props;
 
@@ -255,14 +257,16 @@ const Select = forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
           'onVisibleChange',
         ])}
         ref={refs.setReference}
-        className={cn(clsPrefix, {
+        className={cn(clsPrefix, className, {
           [`${clsPrefix}--disabled`]: disabled,
           [`${clsPrefix}--${propsSize}`]: propsSize,
           [`${clsPrefix}--status-${status}`]: status,
           [`${clsPrefix}--focused`]: visible,
           [`${clsPrefix}--tag`]: mode === 'tags',
+          [`${clsPrefix}--search`]: showSearch,
           [`${clsPrefix}--has-value`]: selectedOptions.length,
         })}
+        style={style}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         onMouseDown={(e) => e.preventDefault()}

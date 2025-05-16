@@ -9,5 +9,7 @@ export * from './form';
 export * from './input';
 export * from './select';
 export * from './stepper';
+export * from './radio';
+export * from './switch';
 /* ---------------------------------- 数据展示 ---------------------------------- */
 export * from './timeline';

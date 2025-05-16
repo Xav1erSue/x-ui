@@ -41,10 +41,6 @@ export interface StepperProps
    */
   disabled?: boolean;
   /**
-   * 是否只读
-   */
-  size?: 'small' | 'medium' | 'large';
-  /**
    * 前缀
    */
   prefix?: React.ReactNode;

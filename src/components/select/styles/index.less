@@ -7,8 +7,7 @@
   max-width: 100%;
   border: 1px solid var(--color-fill);
   border-radius: var(--border-radius-large);
-  transition: 0.05s ease-in-out;
-  transition-property: border-color, box-shadow, opacity;
+  transition: all 0.05s ease-in-out;
 
   /* ----------------------------------- 状态 ----------------------------------- */
   &--status-default {
@@ -34,7 +33,12 @@
   );
 
   /* ----------------------------------- 伪类 ----------------------------------- */
-  &:hover:is(&--disabled) {
+  &,
+  & input {
+    cursor: pointer;
+  }
+
+  &:is(&--disabled) {
     cursor: not-allowed;
   }
 
@@ -47,6 +51,11 @@
 
   &--disabled {
     opacity: 0.6;
+  }
+
+  &--search:not(&--disabled),
+  & input {
+    cursor: text;
   }
 
   /* ----------------------------------- 尺寸 ----------------------------------- */

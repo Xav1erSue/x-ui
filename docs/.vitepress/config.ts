@@ -18,6 +18,7 @@ export default defineConfig({
   title: 'Lessline',
   description: '一个现代的 UI 组件库',
   themeConfig: {
+    logo: 'logo.svg',
     nav: [
       { text: '首页', link: '/' },
       {
@@ -64,6 +65,8 @@ export default defineConfig({
               { text: 'Input 输入框', link: '/input' },
               { text: 'Select 选择器', link: '/select' },
               { text: 'Stepper 步进器', link: '/stepper' },
+              { text: 'Radio 单选框', link: '/radio' },
+              { text: 'Switch 开关', link: '/switch' },
             ],
           },
           {

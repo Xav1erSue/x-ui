@@ -39,7 +39,8 @@
     "docs:preview": "vitepress preview docs",
     "prepublish": "pnpm run build",
     "release": "np",
-    "clean": "rm -rf lib es"
+    "clean": "rm -rf lib es",
+    "create-component": "node scripts/create-component.js"
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.8",

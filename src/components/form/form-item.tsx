@@ -41,9 +41,9 @@ const FormItem: React.FC<FormItemProps> = (props) => {
             ? children(control, context, form)
             : cloneElement(children, childProps);
 
-        return noStyle ? (
-          childNode
-        ) : (
+        if (noStyle) return childNode;
+
+        return (
           <FormItemLayout
             label={label}
             cornerHint={cornerHint}

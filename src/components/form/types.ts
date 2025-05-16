@@ -10,6 +10,11 @@ export interface FormItemBaseProperty {
    * @default 'default'
    */
   status?: ValidateStatus;
+  /**
+   * 尺寸
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium' | 'large';
 }
 
 export interface FormItemProps extends FieldProps {
@@ -43,12 +48,8 @@ export interface FormItemLayoutProps
   children?: React.ReactNode;
 }
 
-export interface FormProps extends RcFormProps {
-  /**
-   * 表单尺寸，会透传给组件
-   * @default 'medium'
-   */
-  size?: 'small' | 'medium' | 'large';
-}
+export interface FormProps
+  extends RcFormProps,
+    Pick<FormItemBaseProperty, 'size'> {}
 
 export type FormContextProps = Pick<FormProps, 'size'>;

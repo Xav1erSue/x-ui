@@ -13,11 +13,6 @@ export interface InputProps
    */
   disabled?: boolean;
   /**
-   * 输入框尺寸
-   * @default 'medium'
-   */
-  size?: 'small' | 'medium' | 'large';
-  /**
    * 前缀
    */
   prefix?: React.ReactNode;
@@ -57,11 +52,6 @@ export interface InputTextAreaProps
    * @default false
    */
   disabled?: boolean;
-  /**
-   * 输入框尺寸
-   * @default 'medium'
-   */
-  size?: 'small' | 'medium' | 'large';
   /**
    * 输入框值
    */

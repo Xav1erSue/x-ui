@@ -58,7 +58,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         [`${clsPrefix}--focused`]: focused,
       })}
       onMouseDown={(e) => {
-        if (focused) {
+        if (document.activeElement === inputRef.current) {
           e.preventDefault();
         } else {
           inputRef.current?.focus();

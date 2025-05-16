@@ -18,3 +18,40 @@ html.dark {
 .props-table td:nth-child(2) * {
   color: #c41d7f;
 }
+
+/* ------------------------------ code group 图标 ----------------------------- */
+:where([dir='ltr']) .vp-code-group [data-title]::before {
+  margin-right: 0.5em;
+}
+
+.vp-code-group [data-title]::before {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-bottom: -0.2em;
+  background: var(--icon) no-repeat center / contain;
+}
+
+[data-title='npm']::before {
+  content: '';
+
+  --icon: url('./icons/npm.svg');
+}
+
+[data-title='pnpm']::before {
+  content: '';
+
+  --icon: url('./icons/pnpm.svg');
+}
+
+[data-title='yarn']::before {
+  content: '';
+
+  --icon: url('./icons/yarn.svg');
+}
+
+[data-title='bun']::before {
+  content: '';
+
+  --icon: url('./icons/bun.svg');
+}

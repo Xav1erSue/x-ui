@@ -1,0 +1,83 @@
+.@{prefix}-switch {
+  position: relative;
+  display: flex;
+  background: var(--color-bg-secondary);
+  border-radius: 999px;
+  transition: background 0.05s ease-in-out;
+
+  /* ----------------------------------- 状态 ----------------------------------- */
+  &--status-default {
+    --switch-color-primary: var(--color-primary);
+  }
+
+  &--status-success {
+    --switch-color-primary: var(--color-status-success);
+  }
+
+  &--status-error {
+    --switch-color-primary: var(--color-status-error);
+  }
+
+  /* ----------------------------------- 尺寸 ----------------------------------- */
+  &--small {
+    width: 42px;
+    height: 24px;
+
+    .@{prefix}-switch__indicator {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &--medium {
+    width: 50px;
+    height: 28px;
+
+    .@{prefix}-switch__indicator {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &--large {
+    width: 66px;
+    height: 36px;
+
+    .@{prefix}-switch__indicator {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  /* ----------------------------------- 元素 ----------------------------------- */
+
+  &__indicator {
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    background: var(--color-bg);
+    border-radius: 999px;
+    box-shadow: 0 1px 2px 0
+      color-mix(in srgb, var(--color-text-primary) 15%, transparent);
+    transform: translateY(-50%);
+    transition: all 0.05s ease-in-out;
+  }
+
+  /* ----------------------------------- 伪类 ----------------------------------- */
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    cursor: pointer;
+  }
+
+  &--checked {
+    background: var(--switch-color-primary);
+
+    .@{prefix}-switch__indicator {
+      left: calc(100% - 2px);
+      transform: translateX(-100%) translateY(-50%);
+    }
+  }
+}

@@ -8,10 +8,10 @@ const prefix = getClsPrefix('flex');
 const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
   const {
     direction = 'horizontal',
-    justify,
-    align,
-    wrap,
-    gap,
+    justify = 'start',
+    align = 'start',
+    wrap = false,
+    gap = 'medium',
     children,
     className,
     style,
