@@ -1,4 +1,3 @@
-import { HTMLMotionProps } from 'motion/react';
 import { OmitWithTypes } from '../../types/utils';
 import { FormItemBaseProperty } from '../form/types';
 
@@ -77,33 +76,27 @@ export interface SelectProps
   filterOption?: boolean | ((search: string, option: OptionType) => boolean);
   /**
    * 选中项的值
-   * @group Props
    */
   value?: ValueType;
   /**
    * 默认选中项的值
-   * @group Props
    */
   defaultValue?: ValueType;
   /**
    * 选中项的值改变时的回调，option 只在单选模式下生效
-   * @group Function
    */
   onChange?: (value: ValueType, option?: OptionType) => void;
   /**
    * 受控是否显示弹窗
-   * @group Props
    */
   visible?: boolean;
   /**
    * 默认显示状态
-   * @group Props
    * @default false
    */
   defaultVisible?: boolean;
   /**
    * 显示状态改变时的回调
-   * @group Function
    */
   onVisibleChange?: (visible: boolean) => void;
 }
@@ -115,7 +108,7 @@ export interface SelectContextProps {
   isSelected: (option: OptionType) => boolean;
 }
 
-export interface OptionListProps extends HTMLMotionProps<'div'> {
+export interface OptionListProps extends React.HTMLAttributes<HTMLDivElement> {
   visible: boolean;
   options: OptionType[];
 }

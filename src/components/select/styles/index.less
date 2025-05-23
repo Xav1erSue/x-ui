@@ -7,7 +7,7 @@
   max-width: 100%;
   border: 1px solid var(--color-fill);
   border-radius: var(--border-radius-large);
-  transition: all 0.05s ease-in-out;
+  transition: all 0.1s ease-in-out;
 
   /* ----------------------------------- 状态 ----------------------------------- */
   &--status-default {
@@ -175,6 +175,25 @@
       height: 16px;
       color: #3b82f6;
     }
+  }
+
+  /* ----------------------------------- 动画 ----------------------------------- */
+  &--enter {
+    opacity: 0;
+  }
+
+  &--enter-active {
+    opacity: 1;
+    transition: opacity 100ms ease-in-out;
+  }
+
+  &--exit {
+    opacity: 1;
+  }
+
+  &--exit-active {
+    opacity: 0;
+    transition: opacity 100ms ease-in-out;
   }
 }
 
