@@ -73,7 +73,7 @@ export default defineConfig({
             text: '数据展示',
             base: '/components',
             collapsed: false,
-            items: [{ text: 'Timeline 时间轴', link: '/timeline' }],
+            items: [{ text: 'Timeline 时间轴 🔥', link: '/timeline' }],
           },
         ],
       },

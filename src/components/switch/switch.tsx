@@ -30,7 +30,7 @@ const Switch: React.FC<SwitchProps> = (props) => {
         [`${clsPrefix}--status-${status}`]: status,
         [`${clsPrefix}--checked`]: checked,
       })}
-      onClick={() => setChecked(!checked)}
+      onClick={() => !disabled && setChecked(!checked)}
       role="switch"
       aria-checked={checked}
       aria-disabled={disabled}
