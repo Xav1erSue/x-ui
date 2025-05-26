@@ -11,7 +11,7 @@ export default defineConfig({
       {
         src: 'https://plausible.xav1er.com/js/script.js',
         defer: 'true',
-        'data-domain': 'docs.xav1er.com',
+        'data-domain': 'lessline.xav1er.com',
       },
     ],
   ],
